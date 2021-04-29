@@ -60,7 +60,7 @@ if (isset($_POST['pseudo']) and (!empty($_POST['pseudo']))) {
 
 	<footer>
 		<div class="footer">
-			FOOTER
+			FOOTER to do
 		</div>
 	</footer>
 
