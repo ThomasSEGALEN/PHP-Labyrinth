@@ -73,7 +73,7 @@
   
 ## 5. Renders :  
   
-| _Render of the main menu :_ |
+| _Renders of the main menu :_ |
 |:---------------------------:|
 |![Menu render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender1.PNG)
 ![Menu render 2](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender2.PNG)|
