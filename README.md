@@ -6,7 +6,7 @@
 2. [Bonus](README.md#2-bonus-)  
 3. [Deliverable](README.md#3-deliverable-)  
 4. [Marking criteras](README.md#4-marking-critera-)  
-5. [Renders](README.md#5-render-)  
+5. [Renders](README.md#5-renders-)  
   
   
 ## 1. Wording :  
