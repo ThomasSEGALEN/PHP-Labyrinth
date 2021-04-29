@@ -1,0 +1,155 @@
+body {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	background-color: #4e4187;
+}
+
+a {
+	color: #f5f7fa;
+	text-decoration: none;
+	margin-right: 40%;
+	margin-left: 40%;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.openButton {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+  	background-color: #4b4e6d;
+  	color: #f5f7fa;
+  	padding: 13px 20px;
+  	border: none;
+  	cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    border: #a395ac 1px solid;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+/* The popup form - hidden by default */
+.formPopup {
+  	display: none;
+}
+
+/* Add styles to the form container */
+.formContainer {
+	max-width: 300px;
+	padding: 10px;
+	background-color: white;
+}
+
+/* Add a red background color to the cancel button */
+.closeButton {
+	padding: 13px;
+    color: #f5f7fa;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    border: #a395ac 1px solid;
+    font-size: 18px;
+    opacity: 0.8;
+	margin-top: 10px;
+  	background-color: #ef5b5b;
+}
+
+/* Add some hover effects to buttons */
+.closeButton:hover, .openButton:hover {
+	opacity: 1;
+}
+
+.table {
+    background: #ffffff;
+    border-spacing: initial;
+    margin: 150px auto;
+    padding: 15px 10px;
+    word-break: break-word;
+    table-layout: auto;
+    line-height: 28px;
+    color: #333;
+    border-radius: 4px;
+    width: 380px;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+
+label {
+    color: #888888;
+    font-size: 16px;
+
+}
+
+.errorMessage {
+	font-size: 12px;
+    padding: 7px 10px;
+    background: #fff1f2;
+    border: #ffd5da 1px solid;
+    color: #ef5b5b;
+    border-radius: 4px;
+    margin: 30px 10px 10px 10px;
+}
+
+.errorInfo {
+    color: #ff0000;
+    margin-left: 10px;
+}
+
+.fieldColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 15px;
+	width: 100%;
+}
+
+.inputBox {
+    padding: 13px;
+    border: #ccc 1px solid;
+    border-radius: 4px;
+}
+
+.loginButton {
+    padding: 13px;
+    background-color: #00cc99;
+    color: #f5f7fa;
+    cursor: pointer;
+    border-radius: 4px;
+    border: #a395ac 1px solid;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.playButton {
+    padding: 13px;
+    padding-left: 165px;
+    padding-right: 165px;
+    background-color: #ab87ff;
+    color: #f5f7fa;
+    cursor: pointer;
+    border-radius: 4px;
+    border: #a395ac 1px solid;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.loginButton:hover, .playButton:hover {
+	opacity: 1;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ab87ff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
