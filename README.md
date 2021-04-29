@@ -75,5 +75,5 @@
   
 | _Render of the main menu :_ |
 |:------------------------:|
-|![Menu render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender1.png)|
-|![Menu render 2](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender2.png)|
+|![Menu render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender1.PNG)
+![Menu render 2](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender2.PNG)|
