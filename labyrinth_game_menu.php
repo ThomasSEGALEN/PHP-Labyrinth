@@ -19,7 +19,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 <body>
 
 	<div class="title">
-		<img src="img/LabyrinthLogo.png">
+		<img src="img/LabyrinthLogo.png"/>
 		<h1>PHP Labyrinth Game</h1>
 	</div>
 
@@ -64,7 +64,18 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 	</div>
 
 	<footer>
-		FOOTER to do
+		<div class="link social">
+			<a class="linkedinPage" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank">
+				<img src="img/LinkedinLogo.png"/>
+			</a>
+			<a class="githubPage" href="https://github.com/ThomasSEGALEN" target="_blank">
+				<img src="img/GithubLogo.png"/>
+			</a>
+			<a class="linkedinPage" href="mailto:thomas.segalen.pro@gmail.com" target="_blank">
+				<img src="img/MailLogo.png"/>
+			</a>
+        </div>
+        <p class="copyright">Developed & designed by Thomas SÉGALEN | © 2021</p>
 	</footer>
 
 	<script>
