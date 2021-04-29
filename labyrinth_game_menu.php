@@ -1,8 +1,8 @@
 <?php
 session_start();
 // session_destroy();
-if (isset($_POST['pseudo']) and (!empty($_POST['pseudo']))) {
-	$_SESSION['pseudo'] = $_POST['pseudo'];
+if (isset($_POST['username']) and (!empty($_POST['username']))) {
+	$_SESSION['username'] = $_POST['username'];
 }
 ?>
 
@@ -18,12 +18,16 @@ if (isset($_POST['pseudo']) and (!empty($_POST['pseudo']))) {
 
 <body>
 
-	<div class="table">
+	<div class="title">
+		<img src="img/LabyrinthLogo.png">
+		<h1>PHP Labyrinth Game</h1>
+	</div>
+
+	<div class="form">
 		<form method="POST" action="" onSubmit="return validate();">
 			<button class="openButton" onclick="openForm()">Identification</button>
 			<div class="formPopup" id="myForm">
 				<form class="formContainer">
-					<!-- <div class="formHead">Identification</div> -->
 					<?php
 					if (isset($_SESSION["errorMessage"])) {
 					?>
@@ -33,35 +37,34 @@ if (isset($_POST['pseudo']) and (!empty($_POST['pseudo']))) {
 					}
 					?>
 					<div class="fieldColumn">
-						<div>
-							<label for="pseudo">Pseudonyme</label><span class="errorInfo" id="user_info"></span>
+						<div class="usernameLabel">
+							<label for="username">Username</label>
+							<span class="errorInfo" id="user_info"></span>
 						</div>
 						<div>
-							<input class="inputBox" id="user_name" type="text" name="pseudo">
+							<input class="inputBox" id="user_name" type="text" name="username">
 						</div>
 					</div>
 					<div class="fieldColumn">
 						<div>
-							<input class="loginButton" type="submit" name="login" value="Confirmer" alt="Login button">
+							<input class="loginButton" type="submit" name="login" value="Confirm" alt="Login button">
 						</div>
 					</div>
-					<button class="closeButton" onclick="closeForm()">Fermer</button>
+					<button class="closeButton" onclick="closeForm()">Close</button>
 				</form>
 			</div>
 		</form>
 		<form>
 			<div class="fieldColumn">
 				<a href="/labyrinth/labyrinth_game.php">
-					<input class="playButton" type="button" name="play" value="Jouer" alt="Play button" action="/labyrinth/labyrinth_game.php">
+					<input class="playButton" type="button" name="play" value="Play" alt="Play button" action="/labyrinth/labyrinth_game.php">
 				</a>
 			</div>
 		</form>
 	</div>
 
 	<footer>
-		<div class="footer">
-			FOOTER to do
-		</div>
+		FOOTER to do
 	</footer>
 
 	<script>
@@ -79,7 +82,7 @@ if (isset($_POST['pseudo']) and (!empty($_POST['pseudo']))) {
 
 			var userName = document.getElementById("user_name").value;
 			if (userName == "") {
-				document.getElementById("user_info").innerHTML = "si vous ne vous identifiez pas, votre session ne sera pas sauvegardée";
+				document.getElementById("user_info").innerHTML = "*without a username, your session won't be saved";
 				$valid = false;
 			}
 			return $valid;

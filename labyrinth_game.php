@@ -22,10 +22,10 @@ session_start();
         </div>
 
         <?php
-        if(!isset($_SESSION['pseudo'])) {
+        if(!isset($_SESSION['username'])) {
         	echo 'Si vous ne vous identifiez pas, votre session ne sera pas sauvegardée';
         } else {
-        	echo 'Pseudonyme: ' . $_SESSION['pseudo'];
+        	echo 'Username: ' . $_SESSION['username'];
         }
         ?>
 

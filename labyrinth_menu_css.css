@@ -2,6 +2,26 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 15px;
 	background-color: #4e4187;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    margin: 0;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    color: #f5f7fa;
+    margin-top: 20px;
+}
+
+img {
+    margin-right: 10px;
+    width: 60px;
+    height: 60px;
 }
 
 a {
@@ -50,7 +70,6 @@ a {
     border: #a395ac 1px solid;
     font-size: 18px;
     opacity: 0.8;
-	margin-top: 10px;
   	background-color: #ef5b5b;
 }
 
@@ -59,7 +78,7 @@ a {
 	opacity: 1;
 }
 
-.table {
+.form {
     background: #ffffff;
     border-spacing: initial;
     margin: 150px auto;
@@ -71,7 +90,6 @@ a {
     border-radius: 4px;
     width: 380px;
     border: 1px solid;
-    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 }
 
 label {
@@ -87,12 +105,17 @@ label {
     border: #ffd5da 1px solid;
     color: #ef5b5b;
     border-radius: 4px;
-    margin: 30px 10px 10px 10px;
+}
+
+.usernameLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .errorInfo {
     color: #ff0000;
-    margin-left: 10px;
 }
 
 .fieldColumn {
@@ -105,12 +128,14 @@ label {
 }
 
 .inputBox {
+    margin-top: 5px;
     padding: 13px;
     border: #ccc 1px solid;
     border-radius: 4px;
 }
 
 .loginButton {
+    margin-bottom: 15px;
     padding: 13px;
     background-color: #00cc99;
     color: #f5f7fa;
@@ -123,8 +148,8 @@ label {
 
 .playButton {
     padding: 13px;
-    padding-left: 165px;
-    padding-right: 165px;
+    padding-left: 171px;
+    padding-right: 171px;
     background-color: #ab87ff;
     color: #f5f7fa;
     cursor: pointer;
@@ -146,10 +171,5 @@ footer {
     background-color: #ab87ff;
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    text-align: center;
+} 
