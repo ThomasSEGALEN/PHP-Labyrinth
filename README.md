@@ -6,6 +6,7 @@
 2. [Bonus](README.md#2-bonus-)  
 3. [Deliverable](README.md#3-deliverable-)  
 4. [Marking criteras](README.md#4-marking-critera-)  
+5. [Renders](README.md#5-render-)  
   
   
 ## 1. Wording :  
@@ -24,7 +25,7 @@
 * *Bottom* : will have to move your character to the bottom  
 * *Restart* : will have to restart the game from the beginning  
 * *Change nickname* : should allow the player to change his username  
-
+  
 *Each time you click on a button, the page will reload and display the new maze if you ckicked on a move button.*  
   
 *If you click on Restart, the game will have to reload from the beginning.*  
@@ -39,7 +40,7 @@
   
 *Onnce your character has reached the exit, you should display a won message, by offering to restart the game.*  
   
-
+  
 ## 2. Bonus :  
   
 *If you feel like a fearless warrior, here are some small features you can add :*  
@@ -68,3 +69,8 @@
   
 *The work is to be done individually.*  
 *However, nothing prevents you from help each other on the reflection !*  
+  
+  
+## 5. Renders :  
+  
+![Image](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/GithubLogo.png)
