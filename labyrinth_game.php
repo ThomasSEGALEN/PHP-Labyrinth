@@ -66,12 +66,39 @@ session_start();
 
 		<div class="labyrinthGame">
 			<?php
-			$file = fopen('C:\wamp64\www\labyrinth\labyrinth_file.txt', 'r+');
+				// $inc = 0;
+				// $file = fopen('C:\wamp64\www\labyrinth\labyrinth_file.txt', 'r+');
+				// while (false !== ($line = fgets($file))) {
+				// 	$array[] = $line;
+				// 	echo $array[$inc] .'<br>';
+				// 	$inc++;
+				// }
 
-			for($nb = 1; $nb <= 17; $nb++) {
-				$lign = fgets($file).'<br>';
-				echo $lign;
-			}
+				$file = fopen('C:\wamp64\www\labyrinth\labyrinth_file.txt', 'r+');
+				$length = strlen(fgets($file));
+				// echo $length;
+				for($col = 0; $col < 17; $col++) {
+					for($row = 0; $row < $length; $row++) {
+						$char = fgetc($file);
+						// echo $char;
+						// $array[$row][$col] = $char;
+						if($char == 'o') {
+							$array[$row][$col] = '▩ ';
+							echo $array[$row][$col];
+						} else if($char == 'c') {
+							$array[$row][$col] = '▢ ';
+							echo $array[$row][$col];
+						} else if($char == 's') {
+							$array[$row][$col] = '◎ ';
+							echo $array[$row][$col];
+						} else if($char == 'e'){
+							$array[$row][$col] = '◉ ';
+							echo $array[$row][$col];
+						}
+						// var_dump($array[$row][$col]);
+					}
+					echo '<br>';
+				}
 			?>
 		</div>
 
