@@ -25,17 +25,9 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 
 	<div class="form">
 		<form method="POST" action="" onSubmit="return validate();">
-			<button class="openButton" onclick="openForm()">Identification</button>
+			<button class="openButton" onclick="openForm()">Authentification</button>
 			<div class="formPopup" id="myForm">
 				<form class="formContainer">
-					<?php
-					if (isset($_SESSION["errorMessage"])) {
-					?>
-						<div class="errorMessage"><?php echo $_SESSION["errorMessage"]; ?></div>
-					<?php
-						unset($_SESSION["errorMessage"]);
-					}
-					?>
 					<div class="fieldColumn">
 						<div class="usernameLabel">
 							<label for="username">Username</label>
@@ -65,17 +57,17 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 
 	<footer>
 		<div class="link social">
-			<a class="linkedinPage" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank">
+			<a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank">
 				<img src="img/LinkedinLogo.png"/>
 			</a>
-			<a class="githubPage" href="https://github.com/ThomasSEGALEN" target="_blank">
+			<a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank">
 				<img src="img/GithubLogo.png"/>
 			</a>
-			<a class="linkedinPage" href="mailto:thomas.segalen.pro@gmail.com" target="_blank">
+			<a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank">
 				<img src="img/MailLogo.png"/>
 			</a>
         </div>
-        <p class="copyright">Developed & designed by Thomas SÉGALEN | © 2021</p>
+        <span class="copyright">Developed & designed by Thomas SÉGALEN | © 2021</span>
 	</footer>
 
 	<script>
