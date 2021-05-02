@@ -48,8 +48,8 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 		</form>
 		<form>
 			<div class="fieldColumn">
-				<a href="/labyrinth/labyrinth_game.php">
-					<input class="playButton" type="button" name="play" value="Play" alt="Play button" action="/labyrinth/labyrinth_game.php">
+				<a href="./labyrinth_game.php">
+					<input class="playButton" type="button" name="play" value="Play" alt="Play button">
 				</a>
 			</div>
 		</form>

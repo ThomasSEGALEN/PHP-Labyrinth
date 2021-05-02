@@ -74,7 +74,7 @@ session_start();
 				// 	$inc++;
 				// }
 
-				$file = fopen('labyrinth_file.txt', 'r+');
+				$file = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt', 'r+');
 				$length = strlen(fgets($file));
 				// echo $length;
 				for($col = 0; $col < 17; $col++) {
@@ -104,24 +104,24 @@ session_start();
 
 		<div class="moveButton">
 			<div class="upButton">
-				<a href="/labyrinth/labyrinth_game.php?move=up">
+				<a href="./labyrinth_game.php?move=up">
 					<input type="image" src="img/upArrow.png" value="Up" alt="Up move">
 				</a>
 			</div>
 			<div class="leftnrightButton">
 				<div class="leftButton">
-					<a href="/labyrinth/labyrinth_game.php?move=left">
+					<a href="./labyrinth_game.php?move=left">
 						<input type="image" src="img/leftArrow.png" value="Left" alt="Left move">
 					</a>
 				</div>
 				<div class="rightButton">
-					<a href="/labyrinth/labyrinth_game.php?move=right">
+					<a href="./labyrinth_game.php?move=right">
 						<input type="image" src="img/rightArrow.png" value="Right" alt="Right move">
 					</a>
 				</div>
 			</div>
 			<div class="bottomButton">
-				<a href="/labyrinth/labyrinth_game.php?move=down">
+				<a href="./labyrinth_game.php?move=down">
 					<input type="image" src="img/downArrow.png" value="Down" alt="Down move">
 				</a>
 			</div>
@@ -145,8 +145,8 @@ function moveDown() {
 }
 
 function restart() {
-	$gameFile = fopen('C:\wamp64\www\labyrinth\labyrinth_file.txt', 'c+b');
-	$restartFile = fopen('C:\wamp64\www\labyrinth\labyrinth_file_restart.txt', 'c+b');
+	$gameFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt', 'r+');
+	$restartFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file_restart.txt', 'r+');
 	fwrite($gameFile, fread($restartFile, 1200));
 }
 
