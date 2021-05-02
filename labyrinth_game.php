@@ -74,7 +74,7 @@ session_start();
 				// 	$inc++;
 				// }
 
-				$file = fopen('.\PHP-Labyrinth\labyrinth_file.txt', 'r+');
+				$file = fopen('labyrinth_file.txt', 'r+');
 				$length = strlen(fgets($file));
 				// echo $length;
 				for($col = 0; $col < 17; $col++) {
