@@ -355,9 +355,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST" AND (isset($_POST['down']))) {
    }
 
 	function restart() {
-		$gameFile = file('C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt');
-		$restartFile = file('C:\wamp64\www\PHP-Labyrinth\labyrinth_file_restart.txt');
-		$gameFile = $restartFile;
+		$gameFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt', 'r+');
+		$restartFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file_restart.txt', 'r+');
+      fwrite($gameFile, fread($restartFile, 4096));
 	}
 
 	function reloadPage() {
