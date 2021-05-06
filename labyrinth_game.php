@@ -119,14 +119,54 @@ if($_SERVER['REQUEST_METHOD'] == "POST" AND (isset($_POST['down']))) {
 
 
 		<div class="labyrinthGame">
-			<?php
+			<!-- <?php
 				for($r = 0; $r < $nbRow; $r++) {
 					for($c = 0; $c < $nbCol; $c++) {
 						echo $array[$r][$c];
 					}
 					echo '<br>';
 				}
-			?>
+			?> -->
+
+         <?php
+
+   $fileName = 'C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt';
+      $colCount = 0;
+      $moveCount = 0;
+      $ready = FALSE;
+      $win = FALSE;
+      $err = FALSE;
+      $lines = file($fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+      $rowCount = count($lines);
+      foreach($lines as $lineNum => $line){
+         $chars = str_split($line);
+         $colCount = count($chars);
+         foreach($chars as $charNum => $char){
+            if($char == 'c'){
+               $grid[$lineNum][$charNum] = '▢';
+            }elseif($char == 'o'){
+               $grid[$lineNum][$charNum] = '▩';
+            }elseif($char == 's'){
+               $grid[$lineNum][$charNum] = '◎';
+               $rowPos = $lineNum;
+               $colPos = $charNum;
+            }elseif($char == 'e'){
+               $grid[$lineNum][$charNum] = '◉';
+            }else{
+               $err = TRUE;
+            }
+         }
+      }
+
+         echo '<div>' . PHP_EOL;
+         for($row = 0; $row < $rowCount; $row++){
+            for($col = 0; $col < $colCount; $col++){
+               echo $grid[$row][$col] . PHP_EOL;
+            }
+            echo '<br>' . PHP_EOL;
+         }
+         echo '</div>' . PHP_EOL;
+?>
 		</div>
 
 		<div class="moveButton">
@@ -167,16 +207,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST" AND (isset($_POST['down']))) {
 <script>
 <?php
 // file codage
-const FCHAR_NONE = '.';
-const FCHAR_WALL = '*';
-const FCHAR_PLAY = 'S';
-const FCHAR_GOAL = 'E';
+// const FCHAR_NONE = '.';
+// const FCHAR_WALL = '*';
+// const FCHAR_PLAY = 'S';
+// const FCHAR_GOAL = 'E';
 
 // grid codage
-const GCHAR_NONE = '.';
-const GCHAR_WALL = '*';
-const GCHAR_PLAY = 'S';
-const GCHAR_GOAL = 'E';
+// const GCHAR_NONE = '.';
+// const GCHAR_WALL = '*';
+// const GCHAR_PLAY = 'S';
+// const GCHAR_GOAL = 'E';
 
 	function getMoveCount(){
       return $moveCount;
@@ -252,16 +292,9 @@ const GCHAR_GOAL = 'E';
             $win = TRUE;
          }
       }
-      if(isset($_SESSION['username'])) {
-         $username = $_SESSION['username'];
-      } else {
-         echo $username;
-      }
    }
 
 	function moveDown(){
-	global $rowPos;
-	global $rowCount;
       if($rowPos < $rowCount){
          if($grid[$rowPos + 1][$colPos] == GCHAR_NONE){
             // move
@@ -322,9 +355,9 @@ const GCHAR_GOAL = 'E';
    }
 
 	function restart() {
-		$gameFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt', 'r+');
-		$restartFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file_restart.txt', 'r+');
-		fwrite($gameFile, fread($restartFile, filesize($gameFile)));
+		$gameFile = file('C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt');
+		$restartFile = file('C:\wamp64\www\PHP-Labyrinth\labyrinth_file_restart.txt');
+		$gameFile = $restartFile;
 	}
 
 	function reloadPage() {
