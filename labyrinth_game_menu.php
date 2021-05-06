@@ -1,8 +1,15 @@
 <?php
 session_start();
-// session_destroy();
+
+$login = FALSE;
 if (isset($_POST['username']) and (!empty($_POST['username']))) {
-	$_SESSION['username'] = $_POST['username'];
+	$login = TRUE;
+} else {
+	$login = FALSE;
+}
+
+if ($login == TRUE) {
+    $_SESSION['username'] = $_POST['username'];
 }
 ?>
 
