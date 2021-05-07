@@ -31,17 +31,16 @@ if ($login == TRUE) {
 	</div>
 
 	<div class="form">
-		<form method="POST" action="" onSubmit="return validate();">
-			<button class="openButton" onclick="openForm()">Authentification</button>
-			<div class="formPopup" id="myForm">
+		<form method="POST" action="">
+			<button class="authButton" id="open" onclick="openForm()">Authentification</button>
+			<div class="formPopup" id="form">
 				<form class="formContainer">
 					<div class="fieldColumn">
 						<div class="usernameLabel">
 							<label for="username">Username</label>
-							<span class="errorInfo" id="user_info"></span>
 						</div>
 						<div>
-							<input class="inputBox" id="user_name" type="text" name="username">
+							<input class="inputBox" type="text" name="username" required>
 						</div>
 					</div>
 					<div class="fieldColumn">
@@ -49,7 +48,7 @@ if ($login == TRUE) {
 							<input class="loginButton" type="submit" name="login" value="Confirm" alt="Login button">
 						</div>
 					</div>
-					<button class="closeButton" onclick="closeForm()">Close</button>
+					<!-- <button class="closeButton" onclick="closeForm()">Close</button> -->
 				</form>
 			</div>
 		</form>
@@ -78,25 +77,16 @@ if ($login == TRUE) {
 	</footer>
 
 	<script>
+		/* JavaScript function which open the form when clicking on Authentification button */
 		function openForm() {
-			document.getElementById("myForm").style.display = "block";
-		}
-
-		function closeForm() {
-			document.getElementById("myForm").style.display = "none";
-		}
-
-		function validate() {
-			var $valid = true;
-			document.getElementById("user_info").innerHTML = "";
-
-			var userName = document.getElementById("user_name").value;
-			if (userName == "") {
-				document.getElementById("user_info").innerHTML = "*without a username, your session won't be saved";
-				$valid = false;
+			if(document.getElementById('open').value == 0) {
+				document.getElementById("form").style.display = "block";
 			}
-			return $valid;
 		}
+		/* JavaScript function which close the form when clicking on Close button - not used because not necessary */
+		// function closeForm() {
+		// 	document.getElementById("myForm").style.display = "none";
+		// }
 	</script>
 
 </body>

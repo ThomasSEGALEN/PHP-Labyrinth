@@ -1,3 +1,4 @@
+/* Add styles to the body */
 body {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 15px;
@@ -9,6 +10,7 @@ body {
     margin: 0;
 }
 
+/* Add styles to the title */
 .title {
     display: flex;
     justify-content: center;
@@ -24,15 +26,28 @@ body {
     height: 50px;
 }
 
+/* Remove links effect */
 a {
-	color: #f5f7fa;
 	text-decoration: none;
-	margin-right: 40%;
-	margin-left: 40%;
 }
 
-/* Button used to open the contact form - fixed at the bottom of the page */
-.openButton {
+/* Form used to set the username */
+.form {
+    background: #ffffff;
+    border-spacing: initial;
+    margin: 150px auto;
+    padding: 15px 10px;
+    word-break: break-word;
+    table-layout: auto;
+    line-height: 28px;
+    color: #333;
+    border-radius: 4px;
+    width: 380px;
+    border: 1px solid;
+}
+
+/* Button used to open the form */
+.authButton {
 	display:flex;
 	justify-content: center;
 	align-items: center;
@@ -48,7 +63,7 @@ a {
     opacity: 0.8;
 }
 
-/* The popup form - hidden by default */
+/* Popup form - hidden by default */
 .formPopup {
   	display: none;
 }
@@ -60,8 +75,8 @@ a {
 	background-color: white;
 }
 
-/* Add a red background color to the cancel button */
-.closeButton {
+/* Button used to close the form */
+/*.closeButton {
 	padding: 13px;
     color: #f5f7fa;
     cursor: pointer;
@@ -71,53 +86,19 @@ a {
     font-size: 18px;
     opacity: 0.8;
   	background-color: #ef5b5b;
-}
+}*/
 
-/* Add some hover effects to buttons */
-.closeButton:hover, .openButton:hover {
-	opacity: 1;
-}
-
-.form {
-    background: #ffffff;
-    border-spacing: initial;
-    margin: 150px auto;
-    padding: 15px 10px;
-    word-break: break-word;
-    table-layout: auto;
-    line-height: 28px;
-    color: #333;
-    border-radius: 4px;
-    width: 380px;
-    border: 1px solid;
-}
-
-label {
-    color: #888888;
-    font-size: 16px;
-
-}
-
-.errorMessage {
-	font-size: 12px;
-    padding: 7px 10px;
-    background: #fff1f2;
-    border: #ffd5da 1px solid;
-    color: #ef5b5b;
-    border-radius: 4px;
-}
-
+/* Username label */
 .usernameLabel {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: #888888;
+    font-size: 16px;
 }
 
-.errorInfo {
-    color: #ff0000;
-}
-
+/* Username input/Login button/Play button divs  */
 .fieldColumn {
 	display: flex;
 	flex-direction: column;
@@ -127,6 +108,7 @@ label {
 	width: 100%;
 }
 
+/* Username input box */
 .inputBox {
     margin-top: 5px;
     padding: 13px;
@@ -134,8 +116,8 @@ label {
     border-radius: 4px;
 }
 
+/* Button used to POST the username */
 .loginButton {
-    margin-bottom: 15px;
     padding: 13px;
     background-color: #00cc99;
     color: #f5f7fa;
@@ -146,7 +128,9 @@ label {
     opacity: 0.8;
 }
 
+/* Button used to play */
 .playButton {
+    margin-top: 5px;
     padding: 13px;
     padding-left: 171px;
     padding-right: 171px;
@@ -159,10 +143,12 @@ label {
     opacity: 0.8;
 }
 
-.loginButton:hover, .playButton:hover {
+/* Add some hover effects to buttons */
+.authButton:hover .loginButton:hover, .playButton:hover {
 	opacity: 1;
 }
 
+/* Add styles to the footer */
 footer {
     position: fixed;
     left: 0;
@@ -189,6 +175,7 @@ footer {
     color: #f5f7fa;
 }
 
+/* Add some hover effects to buttons */
 .footerEffect img {
     transform: scale(1);
     transition: all 0.5s ease;
