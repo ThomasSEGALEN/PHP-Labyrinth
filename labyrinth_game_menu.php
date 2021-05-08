@@ -54,7 +54,7 @@ if ($login == TRUE) {
 		</form>
 		<form>
 			<div class="fieldColumn">
-				<a href="./labyrinth_game.php">
+				<a href="./labyrinth_game.php?init=./labyrinth_level1.txt">
 					<input class="playButton" type="button" name="play" value="Play" alt="Play button">
 				</a>
 			</div>

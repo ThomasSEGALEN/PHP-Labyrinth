@@ -1,70 +1,83 @@
 <?php
    session_start();
 
-   global $gchar_none;
-   global $gchar_wall;
-   global $gchar_play;
-   global $gchar_goal;
-   global $fchar_none;
-   global $fchar_wall;
-   global $fchar_play;
-   global $fchar_goal;
-   global $rowCount;
-   global $colCount;
-   global $rowPos;
-   global $colPos;
-   global $grid;
-   global $gameFile;
-   $fchar_none = 'n';
-   $fchar_wall = 'w';
-   $fchar_play = 'p';
-   $fchar_goal = 'g';
-   $gchar_none = '▢';
-   $gchar_wall = '▩';
-   $gchar_play = '◎';
-   $gchar_goal = '◉';
-   $rowCount = 0;
-   $colCount = 0;
-   $moveCount = 0;
-   $ready = FALSE;
-   $win = FALSE;
-   $err = FALSE;
+   // global $gchar_none;
+   // global $gchar_wall;
+   // global $gchar_play;
+   // global $gchar_goal;
+   // global $fchar_none;
+   // global $fchar_wall;
+   // global $fchar_play;
+   // global $fchar_goal;
+   // $cfg['rowCount'];
+   // $cfg['colCount'];
+   // $cfg['rowPos'];
+   // $cfg['colPos'];
+   // global $cfg['grid'];
+   // global $gameFile;
+   // $fchar_none = 'n';
+   // $fchar_wall = 'w';
+   // $fchar_play = 'p';
+   // $fchar_goal = 'g';
+   // $gchar_none = '▢';
+   // $gchar_wall = '▩';
+   // $gchar_play = '◎';
+   // $gchar_goal = '◉';
+   // $cfg['grid'] = array();
+   // $cfg['rowCount'] = 0;
+   // $cfg['colCount'] = 0;
+   // $cfg['moveCount'] = 0;
+   // $ready = FALSE;
+   // $win = FALSE;
+   // $err = FALSE;
 
    if(isset($_SESSION['username'])) {
       $username = $_SESSION['username'];
-      $_SESSION['load'] = 0;
       session_save_path();
    }
 
-   if($_SESSION['load'] == 0) {
+   if(isset($_GET['init'])) {
       if(isset($_SESSION['username'])) {
          // $gameFile = $_GET['file'];
-         $gameFile = 'labyrinth_file.txt';
-         load($gameFile);
+         // echo 'zzz';
+         $cfg['grid'] = array();
+         $cfg['rowPos'] = 0;
+         $cfg['colPos'] = 0;
+         $cfg['rowCount'] = 0;
+         $cfg['colCount'] = 0;
+         $cfg['moveCount'] = 0;
+         $cfg['gameFile'] = $_GET['init'];
+         $cfg['ready'] = FALSE;
+         $cfg['win'] = FALSE;
+         $_SESSION['cfg'] = $cfg;
+         load();
+         // $cfg['grid'] = array();
+         // $cfg['rowPos'];
+         // $cfg['colPos'];
+         // $cfg['rowCount'] = 0;
+         // $cfg['colCount'] = 0;
+         // $cfg['moveCount'] = 0;
+         // $ready = FALSE;
+         // $win = FALSE;
+         // $err = FALSE;
       }
-      $_SESSION['load'] = 1;
    }
+   // print_r($_SESSION['cfg']);
+   // print_r($GLOBALS);
 
-   if($_SERVER['REQUEST_METHOD'] == "POST" AND $_SESSION['load'] == 1) {
+
+   if($_SERVER['REQUEST_METHOD'] == "POST") {
       if(isset($_POST['up'])) {
-         echo '<br>PosA:'.$rowPos.'/'.$colPos;
          moveUp();
-         echo '<br>PosB:'.$rowPos.'/'.$colPos.'<br>MC:'.$moveCount;
       } elseif(isset($_POST['down'])) {
-         echo '<br>PosA:'.$rowPos.'/'.$colPos;
          moveDown();
-         echo '<br>PosB:'.$rowPos.'/'.$colPos.'<br>MC:'.$moveCount;
       } elseif(isset($_POST['left'])) {
-         echo '<br>PosA:'.$rowPos.'/'.$colPos;
          moveLeft();
-         echo '<br>PosB:'.$rowPos.'/'.$colPos.'<br>MC:'.$moveCount;
       } elseif(isset($_POST['right'])) {
-         echo '<br>PosA:'.$rowPos.'/'.$colPos;
          moveRight();
-         echo '<br>PosB:'.$rowPos.'/'.$colPos.'<br>MC:'.$moveCount;
       }
    }
-   var_dump($_POST);
+   // var_dump($_POST);
 ?>
 
 <!DOCTYPE html>
@@ -82,45 +95,39 @@
          $gameFile = 'C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt';
       ?>
 		<div class="dashboard">
+         <h1 class="title">Sortez du labyrinthe</h1>  
             <div class="memberDashboard">
            	   <a class="logoutButton" href="./labyrinth_game_menu.php">Logout</a>
             </div>
-            <?php
-               if(!isset($username)) {
-        	         echo 'Si vous ne vous identifiez pas, votre session ne sera pas sauvegardée';
-               } else {
-        	         echo 'Username: ' . $username;
-               }
-               echo '<br>';
-               if(isset($_GET['move'])) {
-                  echo 'Move: '. $_GET['move'];
-               } else {
-                  echo "Veuillez effectuer un déplacement";
-               }
-            ?>
+               <?php
+                  if(!isset($username)) {
+           	         echo 'Si vous ne vous identifiez pas, votre session ne sera pas sauvegardée';
+                  } else {
+           	         echo 'Username: ' . $username;
+                  }
+                  echo '<br>';
+                  if(isset($_GET['move'])) {
+                     echo 'Move: '. $_GET['move'];
+                  } else {
+                     echo "Veuillez effectuer un déplacement";
+                  }
+               ?>
+            <div class="progressionText">
+      			<?php
+      			if($_SESSION['cfg']['win'] == TRUE) {
+      				echo "YOU WON !!! <br>";
+                  echo 'Move Count: ' . $_SESSION['cfg']['moveCount'];
+      			} else {
+      				echo "Find the way out of the maze";
+      			}
+      			?>      
+            </div>
       </div>
-
-		<h1 class="title">Sortez du labyrinthe</h1>	
-		
-		<div class="progressionText">
-			<?php
-			if($win == TRUE) {
-				echo "YOU WON !!!";
-			} else {
-				echo "Find the way out of the maze";
-			}
-			?>
-		</div>
 
 
 		<div class="restartButton">
-			<form method="POST" action="">
+			<form method="POST" action="./labyrinth_game.php?init=init">
 				<input type=submit name="restart" value="Recommencer" alt="Restart button">
-				<?php
-				if($_SERVER['REQUEST_METHOD'] == "POST" AND (isset($_POST['restart']))) {
-					restart();
-				}
-				?>
 			</form>
 		</div>
 
@@ -148,37 +155,18 @@
             </form>
 		</div>
 
+      <form action="handler.php" method="get">
+         <input type="hidden" name="lost" value="value" />
+      </form>
+
 	</body>
 </html>
 
 <script>
 <?php
-   function restart() {
-         $gameFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file.txt', 'r+');
-         $restartFile = fopen('C:\wamp64\www\PHP-Labyrinth\labyrinth_file_restart.txt', 'r+');
-         fwrite($gameFile, fread($restartFile, 4096));
-      }
-
-	function getMoveCount(){
-      return $moveCount;
-   }
-
-	function getReady(){
-      return $ready;
-   }
-
-	function getWin(){
-      return $win;
-   }
-
-// load a grid from a file
-	function load($file){
-      global $rowCount;
-      global $colCount;
-      global $rowPos;
-      global $colPos;
-      global $grid;
-      global $moveCount;
+   // load a grid from a file
+	function load(){
+      $cfg = $_SESSION['cfg'];
       $fchar_none = 'n';
       $fchar_wall = 'w';
       $fchar_play = 'p';
@@ -187,183 +175,172 @@
       $gchar_wall = '▩';
       $gchar_play = '◎';
       $gchar_goal = '◉';
-      $moveCount = 0;
-      $ready = FALSE;
-      $win = FALSE;
+      $cfg['moveCount'] = 0;
       $err = FALSE;
-      $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-      $rowCount = count($lines);
+      $lines = file($cfg['gameFile'], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+      $cfg['rowCount'] = count($lines);
       foreach($lines as $lineNum => $line) {
          $chars = str_split($line);
-         $colCount = count($chars);
+         $cfg['colCount'] = count($chars);
          foreach($chars as $charNum => $char) {
             if($char == $fchar_none){
-               $grid[$lineNum][$charNum] = $gchar_none;
+               $cfg['grid'][$lineNum][$charNum] = $gchar_none;
             } elseif($char == $fchar_wall) {
-               $grid[$lineNum][$charNum] = $gchar_wall;
+               $cfg['grid'][$lineNum][$charNum] = $gchar_wall;
             } elseif($char == $fchar_play) {
-               $grid[$lineNum][$charNum] = $gchar_play;
-               $rowPos = $lineNum;
-               $colPos = $charNum;
+               $cfg['grid'][$lineNum][$charNum] = $gchar_play;
+               $cfg['rowPos'] = $lineNum;
+               $cfg['colPos'] = $charNum;
             } elseif($char == $fchar_goal) {
-               $grid[$lineNum][$charNum] = $gchar_goal;
+               $cfg['grid'][$lineNum][$charNum] = $gchar_goal;
             } else {
                $err = TRUE;
             }
          }
       }
       if(!$err) {
-         $ready = TRUE;
+         $cfg['ready'] = TRUE;
       }
+      $_SESSION['cfg'] = $cfg;
    }
 
 	function display(){
-      global $rowCount;
-      global $colCount;
-      global $grid;
+      $cfg = $_SESSION['cfg'];
+      if($cfg['ready']) {
       	echo '<div>' . PHP_EOL;
-      	for($row = 0; $row < $rowCount; $row++) {
-         	for($col = 0; $col < $colCount; $col++) {
-            	echo $grid[$row][$col] . PHP_EOL;
+      	for($row = 0; $row < $cfg['rowCount']; $row++) {
+         	for($col = 0; $col < $cfg['colCount']; $col++) {
+            	echo $cfg['grid'][$row][$col] . PHP_EOL;
          	}
          	echo '<br>' . PHP_EOL;
       	}
       	echo '</div>' . PHP_EOL;
+      } else {
+         echo '<div>' . 'Labyrinth not loaded !' . '</div>' . PHP_EOL;
+      }
    }
 
 	function moveUp() {
-      global $rowCount;
-      global $colCount;
-      global $rowPos;
-      global $colPos;
-      global $grid;
-      global $moveCount;
-      $fchar_none = 'n';
-      $fchar_wall = 'w';
-      $fchar_play = 'p';
-      $fchar_goal = 'g';
-      $gchar_none = '▢';
-      $gchar_wall = '▩';
-      $gchar_play = '◎';
-      $gchar_goal = '◉';
-      if($rowPos > 0) {
-         if($grid[$rowPos - 1][$colPos] == $gchar_none) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $rowPos = $rowPos - 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-         } elseif($grid[$rowPos - 1][$colPos] == $gchar_goal) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $rowPos = $rowPos - 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-            // win
-            $win = TRUE;
+      $cfg = $_SESSION['cfg'];
+      if($cfg['ready'] AND !$cfg['win']) {
+         $fchar_none = 'n';
+         $fchar_wall = 'w';
+         $fchar_play = 'p';
+         $fchar_goal = 'g';
+         $gchar_none = '▢';
+         $gchar_wall = '▩';
+         $gchar_play = '◎';
+         $gchar_goal = '◉';
+         if($cfg['rowPos'] > 0) {
+            if($cfg['grid'][$cfg['rowPos'] - 1][$cfg['colPos']] == $gchar_none) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['rowPos'] = $cfg['rowPos'] - 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+            } elseif($cfg['grid'][$cfg['rowPos'] - 1][$cfg['colPos']] == $gchar_goal) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['rowPos'] = $cfg['rowPos'] - 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+               // win
+               $cfg['win'] = TRUE;
+            }
+            $cfg['moveCount'] = $cfg['moveCount'] + 1;
          }
+         $_SESSION['cfg'] = $cfg;
       }
    }
 
 	function moveDown() {
-      global $rowCount;
-      global $colCount;
-      global $rowPos;
-      global $colPos;
-      global $grid;
-      global $moveCount;
-      $fchar_none = 'n';
-      $fchar_wall = 'w';
-      $fchar_play = 'p';
-      $fchar_goal = 'g';
-      $gchar_none = '▢';
-      $gchar_wall = '▩';
-      $gchar_play = '◎';
-      $gchar_goal = '◉';
-      if($rowPos < $rowCount) {
-         if($grid[$rowPos + 1][$colPos] == $gchar_none) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $rowPos = $rowPos + 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-         }elseif($grid[$rowPos + 1][$colPos] == $gchar_goal) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $rowPos = $rowPos + 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-            // win
-            $win = TRUE;
+      $cfg = $_SESSION['cfg'];
+      if($cfg['ready'] AND !$cfg['win']) {
+         $fchar_none = 'n';
+         $fchar_wall = 'w';
+         $fchar_play = 'p';
+         $fchar_goal = 'g';
+         $gchar_none = '▢';
+         $gchar_wall = '▩';
+         $gchar_play = '◎';
+         $gchar_goal = '◉';
+         if($cfg['rowPos'] < $cfg['rowCount'] - 1) {
+            if($cfg['grid'][$cfg['rowPos'] + 1][$cfg['colPos']] == $gchar_none) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['rowPos'] = $cfg['rowPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+            } elseif($cfg['grid'][$cfg['rowPos'] + 1][$cfg['colPos']] == $gchar_goal) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['rowPos'] = $cfg['rowPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+               // win
+               $cfg['win'] = TRUE;
+            }
+            $cfg['moveCount'] = $cfg['moveCount'] + 1;
          }
+         $_SESSION['cfg'] = $cfg;
       }
    }
 
 	function moveLeft() {
-      global $rowCount;
-      global $colCount;
-      global $rowPos;
-      global $colPos;
-      global $grid;
-      global $moveCount;
-      $fchar_none = 'n';
-      $fchar_wall = 'w';
-      $fchar_play = 'p';
-      $fchar_goal = 'g';
-      $gchar_none = '▢';
-      $gchar_wall = '▩';
-      $gchar_play = '◎';
-      $gchar_goal = '◉';
-      if($colPos > 0) {
-         if($grid[$rowPos][$colPos - 1] == $gchar_none) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $colPos = $colPos - 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-         } elseif($grid[$rowPos][$colPos - 1] == $gchar_goal) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $colPos = $colPos - 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-            // win
-            $win = TRUE;
+      $cfg = $_SESSION['cfg'];
+      if($cfg['ready'] AND !$cfg['win']) {
+         $fchar_none = 'n';
+         $fchar_wall = 'w';
+         $fchar_play = 'p';
+         $fchar_goal = 'g';
+         $gchar_none = '▢';
+         $gchar_wall = '▩';
+         $gchar_play = '◎';
+         $gchar_goal = '◉';
+         if($cfg['colPos'] > 0) {
+            if($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] - 1] == $gchar_none) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['colPos'] = $cfg['colPos'] - 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+            } elseif($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] - 1] == $gchar_goal) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['colPos'] = $cfg['colPos'] - 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+               // win
+               $cfg['win'] = TRUE;
+            }
+            $cfg['moveCount'] = $cfg['moveCount'] + 1;
          }
+         $_SESSION['cfg'] = $cfg;
       }
    }
 
 	function moveRight() {
-      global $rowCount;
-      global $colCount;
-      global $rowPos;
-      global $colPos;
-      global $grid;
-      global $moveCount;
-      $fchar_none = 'n';
-      $fchar_wall = 'w';
-      $fchar_play = 'p';
-      $fchar_goal = 'g';
-      $gchar_none = '▢';
-      $gchar_wall = '▩';
-      $gchar_play = '◎';
-      $gchar_goal = '◉';
-      if($colPos < $colCount){
-         if($grid[$rowPos][$colPos + 1] == $gchar_none) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $colPos = $colPos + 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-         } elseif($grid[$rowPos][$colPos + 1] == $gchar_goal) {
-            // move
-            $grid[$rowPos][$colPos] = $gchar_none;
-            $colPos = $colPos + 1;
-            $grid[$rowPos][$colPos] = $gchar_play;
-            $moveCount++;
-            // win
-            $win = TRUE;
+      $cfg = $_SESSION['cfg'];
+      if($cfg['ready'] AND !$cfg['win']) {
+         $fchar_none = 'n';
+         $fchar_wall = 'w';
+         $fchar_play = 'p';
+         $fchar_goal = 'g';
+         $gchar_none = '▢';
+         $gchar_wall = '▩';
+         $gchar_play = '◎';
+         $gchar_goal = '◉';
+         if($cfg['colPos'] < $cfg['colCount'] - 1){
+            if($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] + 1] == $gchar_none) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['colPos'] = $cfg['colPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+            } elseif($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] + 1] == $gchar_goal) {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_none;
+               $cfg['colPos'] = $cfg['colPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = $gchar_play;
+               // win
+               $cfg['win'] = TRUE;
+            }
+            $cfg['moveCount'] = $cfg['moveCount'] + 1;
          }
+         $_SESSION['cfg'] = $cfg;
       }
    }
 ?>

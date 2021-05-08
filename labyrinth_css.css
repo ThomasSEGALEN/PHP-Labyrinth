@@ -20,7 +20,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 }
 
 .progressionText {
@@ -48,16 +48,12 @@ body {
 }
 
 .leftnrightButton {
-	display: flex;
-	flex-direction: row;
 }
 
 .leftButton {
-	padding-right: 20px;
 }
 
 .rightButton {
-	padding-left: 20px;
 }
 
 .downButton {
