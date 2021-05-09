@@ -45,7 +45,7 @@ if ($login == TRUE) {
 					</div>
 					<div class="fieldColumn">
 						<div>
-							<input class="loginButton" type="submit" name="login" value="Confirm" alt="Login button" onclick="test()">
+							<input class="loginButton" type="submit" name="login" value="Confirm" alt="Login button">
 						</div>
 					</div>
 					<!-- <button class="closeButton" onclick="closeForm()">Close</button> -->
@@ -94,13 +94,13 @@ if ($login == TRUE) {
 
 		function getLevel() {
 			if(document.getElementById('level1').checked) {
-				document.getElementById('link').href = "./labyrinth_game.php?init=./labyrinth_level1.txt"
+				document.getElementById('link').href = "./labyrinth_game.php?init=levels/labyrinth_level1.txt"
 			} else if(document.getElementById('level2').checked) {
-				document.getElementById('link').href = "./labyrinth_game.php?init=./labyrinth_level2.txt"
+				document.getElementById('link').href = "./labyrinth_game.php?init=levels/labyrinth_level2.txt"
 			} else if(document.getElementById('level3').checked) {
-				document.getElementById('link').href = "./labyrinth_game.php?init=./labyrinth_level3.txt"
+				document.getElementById('link').href = "./labyrinth_game.php?init=levels/labyrinth_level3.txt"
 			} else {
-				document.getElementById('link').href = "./labyrinth_game.php?init=./labyrinth_level1.txt"
+				document.getElementById('link').href = "./labyrinth_game.php?init=levels/labyrinth_level1.txt"
 			}
 		}
 
