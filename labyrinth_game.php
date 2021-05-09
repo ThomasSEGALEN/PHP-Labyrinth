@@ -17,7 +17,6 @@
    // save the username into a variable
    if(isset($_SESSION['username'])) {
       $username = $_SESSION['username'];
-      // session_save_path();
    }
 
    // initialize the game
@@ -34,7 +33,6 @@
          $cfg['win'] = FALSE;
          $_SESSION['cfg'] = $cfg;
          load();
-         session_save_path();
       }
    }
    // print_r($_SESSION['cfg']);
@@ -44,12 +42,12 @@
    if($_SERVER['REQUEST_METHOD'] == "POST") {
       if(isset($_POST['up'])) {
          moveUp();
-      } elseif(isset($_POST['down'])) {
-         moveDown();
       } elseif(isset($_POST['left'])) {
          moveLeft();
       } elseif(isset($_POST['right'])) {
          moveRight();
+      } elseif(isset($_POST['down'])) {
+         moveDown();
       }
    }
    // var_dump($_POST);
@@ -212,16 +210,17 @@
 
       <div class="header">
          <div class="dashboard">
-            <div class="memberDashboard">
-               <a class="logoutButton" href="./labyrinth_game_menu.php">Logout</a>
+               <div class="dashButton">
+                  <a class="logoutButton" href="./labyrinth_game_menu.php">Logout</a>
+                  <a class="logoutButton" href="<?php echo './labyrinth_game.php?init=' . $_SESSION['cfg']['gameFile'] ?>">Restart</a>
+               </div>
                <?php
                   if(!isset($username)) {
-                     echo '<br>Username is not set!';
+                     echo 'Username is not set!';
                   } else {
-                     echo '<br>Username: ' . $username;
+                     echo 'Username: ' . $username;
                   }
                ?>
-            </div>
          </div>
          <div class="logo">
             <img src="img/LabyrinthLogo.png">
@@ -230,12 +229,6 @@
             </a>
          </div>
       </div>
-
-		<!-- <div class="restartButton">
-			<form method="POST" action="./labyrinth_game.php?init="<?php echo $_GET['init']?>>
-				<input type=submit name="restart" value="Recommencer" alt="Restart button">
-			</form>
-		</div> -->
 
 		<div class="labyrinthGame">
          <div class="progressionText">
@@ -264,7 +257,9 @@
                      }
                   }
                }
-               if(isset($_GET['move']) AND $_SESSION['cfg']['win'] == FALSE) {
+               if(!isset($_GET['move']) AND $_SESSION['cfg']['win'] == FALSE) {
+                  echo 'Find a way out of the maze';
+               } elseif(isset($_GET['move']) AND $_SESSION['cfg']['win'] == FALSE) {
                   if($_GET['move'] == 'up') {
                      $_GET['move'] = '⮝';
                   } elseif($_GET['move'] == 'left') {
@@ -275,8 +270,6 @@
                      $_GET['move'] = '⮟';
                   }
                   echo 'Move: ' . $_GET['move'];
-               } elseif(!isset($_GET['move']) AND $_SESSION['cfg']['win'] == FALSE) {
-                  echo 'Find a way out of the maze';
                }
             ?>
          </div>
