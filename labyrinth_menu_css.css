@@ -29,7 +29,7 @@ body {
 /* Add styles to links */
 .title {
     position: relative;
-    color: #ffffff;
+    color: #f5f7fa;
 }
 
 .title::before {
@@ -39,7 +39,7 @@ body {
     right: 0;
     width: 0;
     height: 2px;
-    background-color: #ffffff;
+    background-color: #f5f7fa;
     transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -57,7 +57,7 @@ a {
 
 /* Form used to set the username */
 .form {
-    background: #ffffff;
+    background: #f5f7fa;
     border-spacing: initial;
     margin: 150px auto;
     padding: 15px 10px;

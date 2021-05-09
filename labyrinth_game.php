@@ -6,10 +6,12 @@
    define('FCHAR_WALL', 'w');
    define('FCHAR_PLAY', 'p');
    define('FCHAR_GOAL', 'g');
-   define('GCHAR_NONE', '▢');
-   define('GCHAR_WALL', '▩');
-   define('GCHAR_PLAY', '◎');
-   define('GCHAR_GOAL', '◉');
+   define('FCHAR_BONUS', 'b');
+   define('GCHAR_NONE', '🍁');
+   define('GCHAR_WALL', '🥦');
+   define('GCHAR_PLAY', '🐝');
+   define('GCHAR_GOAL', '💐');
+   define('GCHAR_BONUS', '?')
    define('DEV_LEVEL1', '36');
    define('DEV_LEVEL2', '?');
    define('DEV_LEVEL3', '?');
@@ -31,6 +33,8 @@
          $cfg['gameFile'] = $_GET['init'];
          $cfg['ready'] = FALSE;
          $cfg['win'] = FALSE;
+         $cfg['play'] = 0;
+         $cfg['goal'] = 0;
          $_SESSION['cfg'] = $cfg;
          load();
       }
@@ -235,23 +239,23 @@
             <?php
                if($_SESSION['cfg']['win'] == TRUE) {
                   if($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
-                     echo '&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                     echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
                      if(constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
-                        echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                        echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ...and you beat me...';
                      } else {
                         echo '<br>You finally managed to get out';
                      }
                   } elseif($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level2.txt') {
-                     echo '&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                     echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
                      if(constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
-                        echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                        echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ...and you beat me...';
                      } else {
                         echo '<br>You finally managed to get out';
                      }
                   } elseif($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level3.txt') {
-                     echo '&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                     echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
                      if(constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
-                        echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                        echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ...and you beat me...';
                      } else {
                         echo '<br>You finally managed to get out';
                      }
