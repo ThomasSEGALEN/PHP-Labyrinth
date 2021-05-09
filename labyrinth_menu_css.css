@@ -130,7 +130,6 @@ a {
 
 /* Button used to play */
 .playButton {
-    margin-top: 5px;
     padding: 13px;
     padding-left: 171px;
     padding-right: 171px;
@@ -146,6 +145,15 @@ a {
 /* Add some hover effects to buttons */
 .authButton:hover .loginButton:hover, .playButton:hover {
 	opacity: 1;
+}
+
+/* Buttons used to set the level map */
+.levelButton {    
+    padding-top: 12px;
+}
+
+.levelButton > label {
+    padding-right: 10px;
 }
 
 /* Add styles to the footer */
@@ -176,7 +184,7 @@ footer {
 }
 
 /* Add some hover effects to buttons */
-.footerEffect img {
+.footerEffect > img {
     transform: scale(1);
     transition: all 0.5s ease;
     backface-visibility: hidden;
@@ -185,7 +193,7 @@ footer {
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
-.footerEffect:hover img {
+.footerEffect:hover > img {
     transform: scale(1.25);
     transition: all 0.5s ease;
 }

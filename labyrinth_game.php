@@ -1,36 +1,6 @@
 <?php
    session_start();
 
-   // global $gchar_none;
-   // global $gchar_wall;
-   // global $gchar_play;
-   // global $gchar_goal;
-   // global $fchar_none;
-   // global $fchar_wall;
-   // global $fchar_play;
-   // global $fchar_goal;
-   // $cfg['rowCount'];
-   // $cfg['colCount'];
-   // $cfg['rowPos'];
-   // $cfg['colPos'];
-   // global $cfg['grid'];
-   // global $gameFile;
-   // $fchar_none = 'n';
-   // $fchar_wall = 'w';
-   // $fchar_play = 'p';
-   // $fchar_goal = 'g';
-   // $gchar_none = '▢';
-   // $gchar_wall = '▩';
-   // $gchar_play = '◎';
-   // $gchar_goal = '◉';
-   // $cfg['grid'] = array();
-   // $cfg['rowCount'] = 0;
-   // $cfg['colCount'] = 0;
-   // $cfg['moveCount'] = 0;
-   // $ready = FALSE;
-   // $win = FALSE;
-   // $err = FALSE;
-
    if(isset($_SESSION['username'])) {
       $username = $_SESSION['username'];
       session_save_path();
