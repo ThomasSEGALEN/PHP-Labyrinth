@@ -1,207 +1,201 @@
 /* Add styles to the body */
 body {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 15px;
-	background-color: #4e4187;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  background-color: #4e4187;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin: 0;
 }
 
 /* Add styles to the dashboard */
 .dashboard {
-	position: fixed;
-	top: 0;
-	left: 0;
-    background: #f5f7fa;
-    background-color: #ab87ff;
-    border: 3px solid #f5f7fa;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 2px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #f5f7fa;
+  background-color: #ab87ff;
+  border: 3px solid #f5f7fa;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 2px;
 }
 
 .dashButton {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	padding-bottom: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 2px;
 }
 
 /* Add styles to links */
 .title {
-    position: relative;
-    color: #f5f7fa;
+  position: relative;
+  color: #f5f7fa;
 }
 
 .title::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 0;
-    height: 2px;
-    background-color: #f5f7fa;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #f5f7fa;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .title:hover::before {
-        left: 0;
-        right: auto;
-        width: 100%;
-    }
+  .title:hover::before {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
 }
 
 a {
-	color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 a:hover {
-	color: #f5f7fa;
+  color: #f5f7fa;
 }
 
 /* Add styles to the title */
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-    color: #f5f7fa;
-    margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  color: #f5f7fa;
+  margin-top: 70px;
 }
 
 .logo img {
-    margin-right: 10px;
-    width: 50px;
-    height: 50px;
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
 }
 
 /* Add styles to the progression text */
 .progressionText {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
 }
 
 /* Add styles to the labyrinth display */
 .labyrinthGame {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 15px auto;
-    padding: 15px;
-    background-color: #ab87ff;
-    border: 3px solid #f5f7fa;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  padding: 15px;
+  background-color: #ab87ff;
+  border: 3px solid #f5f7fa;
+  border-radius: 10px;
 }
 
 .labyrinthGame div {
-	color: #4e4187;
+  color: #4e4187;
 }
 
 /* Add styles to move buttons */
 .moveButton {
-	position: relative;
-	margin: auto;
-	margin-bottom: 140px;
-	padding-top: 10px;
-    bottom: 0;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .upButton input {
-	background-image: url("img/upArrow.png");
-	background-color: #4e4187;
-	border: 0;
-    height: 70px;
-    width: 70px;
-    margin-left: 75px;
+  background-image: url("img/upArrow.png");
+  background-color: #4e4187;
+  border: 0;
+  height: 70px;
+  width: 70px;
 }
 
 .lrButton {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .leftButton input {
-	background-image: url("img/leftArrow.png");
-	background-color: #4e4187;
-	border: 0;
-    height: 70px;
-    width: 70px;
+  background-image: url("img/leftArrow.png");
+  background-color: #4e4187;
+  border: 0;
+  height: 70px;
+  width: 70px;
 }
 
 .leftButton {
-	padding-right: 40px;
+  padding-right: 40px;
 }
 
 .rightButton input {
-	background-image: url("img/rightArrow.png");
-	background-color: #4e4187;
-	border: 0;
-    height: 70px;
-    width: 70px;
+  background-image: url("img/rightArrow.png");
+  background-color: #4e4187;
+  border: 0;
+  height: 70px;
+  width: 70px;
 }
 
 .rightButton {
-	padding-left: 40px;
+  padding-left: 40px;
 }
 
 .downButton input {
-	background-image: url("img/downArrow.png");
-	background-color: #4e4187;
-	border: 0;
-    height: 70px;
-    width: 70px;
-    margin-left: 75px;
+  background-image: url("img/downArrow.png");
+  background-color: #4e4187;
+  border: 0;
+  height: 70px;
+  width: 70px;
 }
 
 /* Add styles to the footer */
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #ab87ff;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ab87ff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .link.social > a {
-    display: inline-block;
-    line-height: 36px;
-    margin: 0 20px;
+  display: inline-block;
+  line-height: 36px;
+  margin: 0 20px;
 }
 
 .social img {
-    width: 60px;
-    height: 60px;
+  width: 50px;
+  height: 50px;
 }
 
 .copyright {
-    color: #f5f7fa;
+  color: #f5f7fa;
 }
 
 /* Add some hover effects to buttons */
 .footerEffect > img {
-    transform: scale(1);
-    transition: all 0.5s ease;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    -webkit-font-smoothing: antialised;
-    -webkit-font-smoothing: subpixel-antialiased;
+  transform: scale(1);
+  transition: all 0.5s ease;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialised;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .footerEffect:hover > img {
-    transform: scale(1.25);
-    transition: all 0.5s ease;
+  transform: scale(1.25);
+  transition: all 0.5s ease;
 }
