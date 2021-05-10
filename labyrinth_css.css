@@ -119,6 +119,11 @@ a:hover {
   border: 0;
   height: 70px;
   width: 70px;
+  opacity: 0.9;
+}
+
+.upButton:hover input {
+  opacity: 1;
 }
 
 .lrButton {
@@ -132,6 +137,11 @@ a:hover {
   border: 0;
   height: 70px;
   width: 70px;
+  opacity: 0.9;
+}
+
+.leftButton:hover input {
+  opacity: 1;
 }
 
 .leftButton {
@@ -144,6 +154,11 @@ a:hover {
   border: 0;
   height: 70px;
   width: 70px;
+  opacity: 0.9;
+}
+
+.rightButton:hover input {
+  opacity: 1;
 }
 
 .rightButton {
@@ -156,6 +171,11 @@ a:hover {
   border: 0;
   height: 70px;
   width: 70px;
+  opacity: 0.9;
+}
+
+.downButton:hover input {
+  opacity: 1;
 }
 
 /* Add styles to the footer */

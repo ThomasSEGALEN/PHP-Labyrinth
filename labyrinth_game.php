@@ -6,12 +6,12 @@ define('FCHAR_NONE', 'n');
 define('FCHAR_WALL', 'w');
 define('FCHAR_PLAY', 'p');
 define('FCHAR_GOAL', 'g');
-// define('FCHAR_BONUS', 'b');
+define('FCHAR_BONUS', 'b');
 define('GCHAR_NONE', '🍁');
 define('GCHAR_WALL', '🥦');
-define('GCHAR_PLAY', '🐝');
-define('GCHAR_GOAL', '💐');
-// define('GCHAR_BONUS', '?')
+define('GCHAR_PLAY', '🧙');
+define('GCHAR_GOAL', '🌌');
+define('GCHAR_BONUS', '🍄');
 define('DEV_LEVEL1', '38');
 define('DEV_LEVEL2', '30');
 define('DEV_LEVEL3', '?');
@@ -30,11 +30,15 @@ if (isset($_GET['init'])) {
       $cfg['rowCount'] = 0;
       $cfg['colCount'] = 0;
       $cfg['moveCount'] = 0;
+      $cfg['bonusCount'] = 0;
+      $cfg['bonusTotal'] = 0;
       $cfg['gameFile'] = $_GET['init'];
       $cfg['ready'] = FALSE;
       $cfg['win'] = FALSE;
       $cfg['play'] = 0;
       $cfg['goal'] = 0;
+      $cfg['bonus'] = 0;
+      $cfg['bonusError'] = FALSE;
       $_SESSION['cfg'] = $cfg;
       load();
    }
@@ -78,6 +82,9 @@ function load()
             $cfg['colPos'] = $charNum;
          } elseif ($char == constant('FCHAR_GOAL')) {
             $cfg['grid'][$lineNum][$charNum] = constant('GCHAR_GOAL');
+         } elseif ($char == constant('FCHAR_BONUS')) {
+            $cfg['grid'][$lineNum][$charNum] = constant('GCHAR_BONUS');
+            $cfg['bonusTotal'] = $cfg['bonusTotal'] + 1;
          } else {
             $err = TRUE;
          }
@@ -118,13 +125,33 @@ function moveUp()
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['rowPos'] = $cfg['rowPos'] - 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-         } elseif ($cfg['grid'][$cfg['rowPos'] - 1][$cfg['colPos']] == constant('GCHAR_GOAL')) {
+         } elseif ($cfg['grid'][$cfg['rowPos'] - 1][$cfg['colPos']] == constant('GCHAR_BONUS')) {
             // move
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['rowPos'] = $cfg['rowPos'] - 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-            // win
-            $cfg['win'] = TRUE;
+            // collect
+            $cfg['bonusCount'] = $cfg['bonusCount'] + 1;
+         } elseif ($cfg['grid'][$cfg['rowPos'] - 1][$cfg['colPos']] == constant('GCHAR_GOAL')) {
+            if (isset($cfg['bonusTotal'])) {
+               if ($cfg['bonusTotal'] == $cfg['bonusCount']) {
+                  // move
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+                  $cfg['rowPos'] = $cfg['rowPos'] + 1;
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+                  // win
+                  $cfg['win'] = TRUE;
+               } else {
+                  $cfg['bonusError'] = TRUE;
+               }
+            } else {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+               $cfg['rowPos'] = $cfg['rowPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+               // win
+               $cfg['win'] = TRUE;
+            }
          }
          $cfg['moveCount'] = $cfg['moveCount'] + 1;
       }
@@ -143,13 +170,33 @@ function moveLeft()
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['colPos'] = $cfg['colPos'] - 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-         } elseif ($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] - 1] == constant('GCHAR_GOAL')) {
+         } elseif ($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] - 1] == constant('GCHAR_BONUS')) {
             // move
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['colPos'] = $cfg['colPos'] - 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-            // win
-            $cfg['win'] = TRUE;
+            // collect
+            $cfg['bonusCount'] = $cfg['bonusCount'] + 1;
+         } elseif ($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] - 1] == constant('GCHAR_GOAL')) {
+            if (isset($cfg['bonusTotal'])) {
+               if ($cfg['bonusTotal'] == $cfg['bonusCount']) {
+                  // move
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+                  $cfg['rowPos'] = $cfg['rowPos'] + 1;
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+                  // win
+                  $cfg['win'] = TRUE;
+               } else {
+                  $cfg['bonusError'] = TRUE;
+               }
+            } else {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+               $cfg['rowPos'] = $cfg['rowPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+               // win
+               $cfg['win'] = TRUE;
+            }
          }
          $cfg['moveCount'] = $cfg['moveCount'] + 1;
       }
@@ -168,13 +215,33 @@ function moveRight()
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['colPos'] = $cfg['colPos'] + 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-         } elseif ($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] + 1] == constant('GCHAR_GOAL')) {
+         } elseif ($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] + 1] == constant('GCHAR_BONUS')) {
             // move
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['colPos'] = $cfg['colPos'] + 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-            // win
-            $cfg['win'] = TRUE;
+            // collect
+            $cfg['bonusCount'] = $cfg['bonusCount'] + 1;
+         } elseif ($cfg['grid'][$cfg['rowPos']][$cfg['colPos'] + 1] == constant('GCHAR_GOAL')) {
+            if (isset($cfg['bonusTotal'])) {
+               if ($cfg['bonusTotal'] == $cfg['bonusCount']) {
+                  // move
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+                  $cfg['rowPos'] = $cfg['rowPos'] + 1;
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+                  // win
+                  $cfg['win'] = TRUE;
+               } else {
+                  $cfg['bonusError'] = TRUE;
+               }
+            } else {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+               $cfg['rowPos'] = $cfg['rowPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+               // win
+               $cfg['win'] = TRUE;
+            }
          }
          $cfg['moveCount'] = $cfg['moveCount'] + 1;
       }
@@ -193,13 +260,33 @@ function moveDown()
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['rowPos'] = $cfg['rowPos'] + 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-         } elseif ($cfg['grid'][$cfg['rowPos'] + 1][$cfg['colPos']] == constant('GCHAR_GOAL')) {
+         } elseif ($cfg['grid'][$cfg['rowPos'] + 1][$cfg['colPos']] == constant('GCHAR_BONUS')) {
             // move
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
             $cfg['rowPos'] = $cfg['rowPos'] + 1;
             $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
-            // win
-            $cfg['win'] = TRUE;
+            // collect
+            $cfg['bonusCount'] = $cfg['bonusCount'] + 1;
+         } elseif ($cfg['grid'][$cfg['rowPos'] + 1][$cfg['colPos']] == constant('GCHAR_GOAL')) {
+            if (isset($cfg['bonusTotal'])) {
+               if ($cfg['bonusTotal'] == $cfg['bonusCount']) {
+                  // move
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+                  $cfg['rowPos'] = $cfg['rowPos'] + 1;
+                  $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+                  // win
+                  $cfg['win'] = TRUE;
+               } else {
+                  $cfg['bonusError'] = TRUE;
+               }
+            } else {
+               // move
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_NONE');
+               $cfg['rowPos'] = $cfg['rowPos'] + 1;
+               $cfg['grid'][$cfg['rowPos']][$cfg['colPos']] = constant('GCHAR_PLAY');
+               // win
+               $cfg['win'] = TRUE;
+            }
          }
          $cfg['moveCount'] = $cfg['moveCount'] + 1;
       }
@@ -249,7 +336,30 @@ function moveDown()
    <div class="labyrinthGame">
       <div class="progressionText">
          <?php
-         if ($_SESSION['cfg']['win'] == TRUE) {
+         if ($_SESSION['cfg']['win'] == TRUE and !empty($_SESSION['cfg']['bonusTotal'])) {
+            if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
+               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+               if (constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
+                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+               } else {
+                  echo '<br>You finally managed to get out';
+               }
+            } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level2.txt') {
+               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+               if (constant('DEV_LEVEL2') > $_SESSION['cfg']['moveCount']) {
+                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+               } else {
+                  echo '<br>You finally managed to get out';
+               }
+            } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level3.txt') {
+               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+               if (constant('DEV_LEVEL3') > $_SESSION['cfg']['moveCount']) {
+                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+               } else {
+                  echo '<br>You finally managed to get out';
+               }
+            }
+         } elseif ($_SESSION['cfg']['win'] == TRUE and $_SESSION['cfg']['bonusCount'] == $_SESSION['cfg']['bonusTotal']) {
             if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
                echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
                if (constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
@@ -275,7 +385,7 @@ function moveDown()
          }
          if (!isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE) {
             echo 'Find a way out of the maze';
-         } elseif (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE) {
+         } elseif (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and empty($_SESSION['cfg']['bonusTotal'])) {
             if ($_GET['move'] == 'up') {
                $_GET['move'] = '⮝';
             } elseif ($_GET['move'] == 'left') {
@@ -286,6 +396,21 @@ function moveDown()
                $_GET['move'] = '⮟';
             }
             echo 'Move: ' . $_GET['move'];
+         } else if (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and isset($_SESSION['cfg']['bonusTotal'])) {
+            if ($_GET['move'] == 'up') {
+               $_GET['move'] = '⮝';
+            } elseif ($_GET['move'] == 'left') {
+               $_GET['move'] = '⮜';
+            } elseif ($_GET['move'] == 'right') {
+               $_GET['move'] = '⮞';
+            } elseif ($_GET['move'] == 'down') {
+               $_GET['move'] = '⮟';
+            }
+            echo 'Move: ' . $_GET['move'] . ' - Bonus collected: ' . $_SESSION['cfg']['bonusCount'] . '/' . $_SESSION['cfg']['bonusTotal'];
+            if ($_SESSION['cfg']['bonusError'] == TRUE) {
+               echo '<br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspBonus missed!';
+               $_SESSION['cfg']['bonusError'] = FALSE;
+            }
          }
          ?>
       </div>
