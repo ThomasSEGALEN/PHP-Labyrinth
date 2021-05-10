@@ -6,7 +6,8 @@
 2. [Bonus](README.md#2-bonus-)  
 3. [Deliverable](README.md#3-deliverable-)  
 4. [Marking criteras](README.md#4-marking-criteras-)  
-5. [Renders](README.md#5-renders-)  
+5. [Controls](README.md#5-controls-)  
+6. [Renders](README.md#6-renders-)  
   
   
 ## 1. Wording :  
@@ -71,7 +72,15 @@
 *However, nothing prevents you from help each other on the reflection !*  
   
   
-## 5. Renders :  
+## 5. Controls :  
+  
+*Here are the controls that it might be useful to know about :*  
+* *Movement* - **Arrow** keys  
+* *Logout* - **Escape** key  
+* *Restart* - **Space** key  
+  
+
+## 6. Renders :  
   
 | _Renders of the main menu :_ | _Renders of the game :_ |
 |:----------------------------:|:-----------------------:|
