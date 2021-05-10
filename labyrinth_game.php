@@ -223,12 +223,12 @@ function moveDown()
    <div class="header">
       <div class="dashboard">
          <div class="dashButton">
-            <a class="logoutButton" href="./labyrinth_game_menu.php">Logout</a>
-            <a class="logoutButton" href="<?php if (isset($_SESSION['username'])) {
-                                             echo './labyrinth_game.php?init=' . $_SESSION['cfg']['gameFile'];
-                                          } else {
-                                             echo 'username_not_set';
-                                          } ?>">Restart</a>
+            <a class="logoutButton" id="logout" href="./labyrinth_game_menu.php">Logout</a>
+            <a class="restartButton" id="restart" href="<?php if (isset($_SESSION['username'])) {
+                                                            echo './labyrinth_game.php?init=' . $_SESSION['cfg']['gameFile'];
+                                                         } else {
+                                                            echo 'username_not_set';
+                                                         } ?>">Restart</a>
          </div>
          <?php
          if (!isset($username)) {
@@ -253,21 +253,21 @@ function moveDown()
             if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
                echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
                if (constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ...and you beat me...';
+                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
                } else {
                   echo '<br>You finally managed to get out';
                }
             } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level2.txt') {
                echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
                if (constant('DEV_LEVEL2') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ...and you beat me...';
+                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
                } else {
                   echo '<br>You finally managed to get out';
                }
             } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level3.txt') {
                echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
                if (constant('DEV_LEVEL3') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ...and you beat me...';
+                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
                } else {
                   echo '<br>You finally managed to get out';
                }
@@ -329,8 +329,10 @@ function moveDown()
    </footer>
 
    <script type="text/javascript">
-      // allow to play with keyboard arrows
+      // page is body's id
       var page = document.getElementById('page');
+
+      // play with keyboard arrows
       page.addEventListener('keydown', function(event) {
          if (event.keyCode == 38) {
             document.getElementById('up').click();
@@ -340,6 +342,15 @@ function moveDown()
             document.getElementById('right').click();
          } else if (event.keyCode == 40) {
             document.getElementById('down').click();
+         }
+      });
+
+      // exit the game with escape key & restart the game with space key
+      page.addEventListener('keyup', function(event) {
+         if (event.keyCode == 27) {
+            document.getElementById('logout').click();
+         } else if (event.keyCode == 32) {
+            document.getElementById('restart').click();
          }
       });
    </script>
