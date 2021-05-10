@@ -50,8 +50,9 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 		</form>
 		<form>
 			<div class="fieldColumn">
-				<a href="" id="link" onclick="getLevel()">
-					<input class="playButton" id="play" type="button" name="play" value="Play" alt="Play button">
+				<a id="link" href="<?php if (isset($_SESSION['username'])) {
+									} ?>" onclick="getLevel()">
+					<input class="playButton" type="button" name="play" value="Play" alt="Play button">
 				</a>
 				<div class="levelButton">
 					<input type="radio" id="level1" name="level" value="Level1" checked>
@@ -67,13 +68,13 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 
 	<footer>
 		<div class="link social">
-			<a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank">
+			<a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank" alt="Linkedin button">
 				<img src="img/LinkedinLogo.png">
 			</a>
-			<a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank">
+			<a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank" alt="Github button">
 				<img src="img/GithubLogo.png">
 			</a>
-			<a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank">
+			<a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank" alt="Mail button">
 				<img src="img/MailLogo.png">
 			</a>
 		</div>

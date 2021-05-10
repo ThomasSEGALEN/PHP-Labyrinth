@@ -310,12 +310,12 @@ function moveDown()
    <div class="header">
       <div class="dashboard">
          <div class="dashButton">
-            <a class="logoutButton" id="logout" href="./labyrinth_game_menu.php">Logout</a>
+            <a class="logoutButton" id="logout" href="./labyrinth_game_menu.php" alt="Logout button">Logout</a>
             <a class="restartButton" id="restart" href="<?php if (isset($_SESSION['username'])) {
                                                             echo './labyrinth_game.php?init=' . $_SESSION['cfg']['gameFile'];
                                                          } else {
                                                             echo 'username_not_set';
-                                                         } ?>">Restart</a>
+                                                         } ?>" alt="Restart button">Restart</a>
          </div>
          <?php
          if (!isset($username)) {
@@ -336,81 +336,85 @@ function moveDown()
    <div class="labyrinthGame">
       <div class="progressionText">
          <?php
-         if ($_SESSION['cfg']['win'] == TRUE and !empty($_SESSION['cfg']['bonusTotal'])) {
-            if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
-               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
-               if (constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
-               } else {
-                  echo '<br>You finally managed to get out';
+         if (isset($_SESSION['username'])) {
+            if ($_SESSION['cfg']['win'] == TRUE and !empty($_SESSION['cfg']['bonusTotal'])) {
+               if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
+                  echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                  if (constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
+                     echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                  } else {
+                     echo '<br>You finally managed to get out';
+                  }
+               } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level2.txt') {
+                  echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                  if (constant('DEV_LEVEL2') > $_SESSION['cfg']['moveCount']) {
+                     echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                  } else {
+                     echo '<br>You finally managed to get out';
+                  }
+               } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level3.txt') {
+                  echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                  if (constant('DEV_LEVEL3') > $_SESSION['cfg']['moveCount']) {
+                     echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                  } else {
+                     echo '<br>You finally managed to get out';
+                  }
                }
-            } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level2.txt') {
-               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
-               if (constant('DEV_LEVEL2') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
-               } else {
-                  echo '<br>You finally managed to get out';
-               }
-            } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level3.txt') {
-               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
-               if (constant('DEV_LEVEL3') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
-               } else {
-                  echo '<br>You finally managed to get out';
+            } elseif ($_SESSION['cfg']['win'] == TRUE and $_SESSION['cfg']['bonusCount'] == $_SESSION['cfg']['bonusTotal']) {
+               if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
+                  echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                  if (constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
+                     echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                  } else {
+                     echo '<br>You finally managed to get out';
+                  }
+               } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level2.txt') {
+                  echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                  if (constant('DEV_LEVEL2') > $_SESSION['cfg']['moveCount']) {
+                     echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                  } else {
+                     echo '<br>You finally managed to get out';
+                  }
+               } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level3.txt') {
+                  echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
+                  if (constant('DEV_LEVEL3') > $_SESSION['cfg']['moveCount']) {
+                     echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
+                  } else {
+                     echo '<br>You finally managed to get out';
+                  }
                }
             }
-         } elseif ($_SESSION['cfg']['win'] == TRUE and $_SESSION['cfg']['bonusCount'] == $_SESSION['cfg']['bonusTotal']) {
-            if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
-               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
-               if (constant('DEV_LEVEL1') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
-               } else {
-                  echo '<br>You finally managed to get out';
+            if (!isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE) {
+               echo 'Find a way out of the maze';
+            } elseif (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and empty($_SESSION['cfg']['bonusTotal'])) {
+               if ($_GET['move'] == 'up') {
+                  $_GET['move'] = '⮝';
+               } elseif ($_GET['move'] == 'left') {
+                  $_GET['move'] = '⮜';
+               } elseif ($_GET['move'] == 'right') {
+                  $_GET['move'] = '⮞';
+               } elseif ($_GET['move'] == 'down') {
+                  $_GET['move'] = '⮟';
                }
-            } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level2.txt') {
-               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL2') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
-               if (constant('DEV_LEVEL2') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
-               } else {
-                  echo '<br>You finally managed to get out';
+               echo 'Move: ' . $_GET['move'];
+            } else if (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and isset($_SESSION['cfg']['bonusTotal'])) {
+               if ($_GET['move'] == 'up') {
+                  $_GET['move'] = '⮝';
+               } elseif ($_GET['move'] == 'left') {
+                  $_GET['move'] = '⮜';
+               } elseif ($_GET['move'] == 'right') {
+                  $_GET['move'] = '⮞';
+               } elseif ($_GET['move'] == 'down') {
+                  $_GET['move'] = '⮟';
                }
-            } elseif ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level3.txt') {
-               echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL3') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
-               if (constant('DEV_LEVEL3') > $_SESSION['cfg']['moveCount']) {
-                  echo '<br>You finally managed to get out <br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp...and you beat me...';
-               } else {
-                  echo '<br>You finally managed to get out';
+               echo 'Move: ' . $_GET['move'] . ' - Bonus collected: ' . $_SESSION['cfg']['bonusCount'] . '/' . $_SESSION['cfg']['bonusTotal'];
+               if ($_SESSION['cfg']['bonusError'] == TRUE) {
+                  echo '<br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspBonus missed!';
+                  $_SESSION['cfg']['bonusError'] = FALSE;
                }
             }
-         }
-         if (!isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE) {
-            echo 'Find a way out of the maze';
-         } elseif (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and empty($_SESSION['cfg']['bonusTotal'])) {
-            if ($_GET['move'] == 'up') {
-               $_GET['move'] = '⮝';
-            } elseif ($_GET['move'] == 'left') {
-               $_GET['move'] = '⮜';
-            } elseif ($_GET['move'] == 'right') {
-               $_GET['move'] = '⮞';
-            } elseif ($_GET['move'] == 'down') {
-               $_GET['move'] = '⮟';
-            }
-            echo 'Move: ' . $_GET['move'];
-         } else if (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and isset($_SESSION['cfg']['bonusTotal'])) {
-            if ($_GET['move'] == 'up') {
-               $_GET['move'] = '⮝';
-            } elseif ($_GET['move'] == 'left') {
-               $_GET['move'] = '⮜';
-            } elseif ($_GET['move'] == 'right') {
-               $_GET['move'] = '⮞';
-            } elseif ($_GET['move'] == 'down') {
-               $_GET['move'] = '⮟';
-            }
-            echo 'Move: ' . $_GET['move'] . ' - Bonus collected: ' . $_SESSION['cfg']['bonusCount'] . '/' . $_SESSION['cfg']['bonusTotal'];
-            if ($_SESSION['cfg']['bonusError'] == TRUE) {
-               echo '<br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspBonus missed!';
-               $_SESSION['cfg']['bonusError'] = FALSE;
-            }
+         } else {
+            header('Location: http://localhost/PHP-Labyrinth/labyrinth_game_menu.php');
          }
          ?>
       </div>
@@ -423,30 +427,30 @@ function moveDown()
 
    <div class="moveButton">
       <form class="upButton" method="POST" action="./labyrinth_game.php?move=up">
-         <input id="up" type="submit" name="up" value="" />
+         <input id="up" type="submit" name="up" value="" alt="Up button" />
       </form>
       <div class="lrButton">
          <form class="leftButton" method="POST" action="./labyrinth_game.php?move=left">
-            <input id="left" type="submit" name="left" value="" />
+            <input id="left" type="submit" name="left" value="" alt="Left button" />
          </form>
          <form class="rightButton" method="POST" action="./labyrinth_game.php?move=right">
-            <input id="right" type="submit" name="right" value="" />
+            <input id="right" type="submit" name="right" value="" alt="Right button" />
          </form>
       </div>
       <form class="downButton" method="POST" action="./labyrinth_game.php?move=down">
-         <input id="down" type="submit" name="down" value="" />
+         <input id="down" type="submit" name="down" value="" alt="Down button" />
       </form>
    </div>
 
    <footer>
       <div class="link social">
-         <a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank">
+         <a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank" alt="Linkedin button">
             <img src="img/LinkedinLogo.png" />
          </a>
-         <a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank">
+         <a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank" alt="Github button">
             <img src="img/GithubLogo.png" />
          </a>
-         <a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank">
+         <a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank" alt="Mail button">
             <img src="img/MailLogo.png" />
          </a>
       </div>
