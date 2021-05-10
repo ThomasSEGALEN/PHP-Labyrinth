@@ -73,8 +73,11 @@
   
 ## 5. Renders :  
   
-| _Renders of the main menu :_ |
-|:----------------------------:|
-|![Menu render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender1.PNG)
-![Menu render 2](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender2.PNG)
-![Menu render 3](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender3.PNG)|
+| _Renders of the main menu :_ | _Renders of the game :_ |
+|:----------------------------:|:-----------------------:|
+|![Menu render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender1.PNG)|
+![Game render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/GameRender1.PNG)|
+|![Menu render 2](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender2.PNG)|
+![Game render 2](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/GameRender2.PNG)|
+|![Menu render 3](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender3.PNG)|
+![Game render 3](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/GameRender3.PNG)|

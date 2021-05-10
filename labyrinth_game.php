@@ -14,7 +14,7 @@ define('GCHAR_GOAL', '🌌');
 define('GCHAR_BONUS', '🍄');
 define('DEV_LEVEL1', '38');
 define('DEV_LEVEL2', '30');
-define('DEV_LEVEL3', '?');
+define('DEV_LEVEL3', '128');
 
 // save the username into a variable
 if (isset($_SESSION['username'])) {
