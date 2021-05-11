@@ -470,32 +470,7 @@ function moveDown()
       <span class="copyright">Developed & designed by Thomas SÉGALEN | © 2021</span>
    </footer>
 
-   <script type="text/javascript">
-      // page is body's id
-      var page = document.getElementById('page');
-
-      // play with keyboard arrows
-      page.addEventListener('keydown', function(event) {
-         if (event.keyCode == 38) {
-            document.getElementById('up').click();
-         } else if (event.keyCode == 37) {
-            document.getElementById('left').click();
-         } else if (event.keyCode == 39) {
-            document.getElementById('right').click();
-         } else if (event.keyCode == 40) {
-            document.getElementById('down').click();
-         }
-      });
-
-      // exit the game with escape key & restart the game with space key
-      page.addEventListener('keyup', function(event) {
-         if (event.keyCode == 27) {
-            document.getElementById('logout').click();
-         } else if (event.keyCode == 32) {
-            document.getElementById('restart').click();
-         }
-      });
-   </script>
+   <script type="text/javascript" src="labyrinth_js.js"></script>
 
 </body>
 
