@@ -1,4 +1,5 @@
 <?php
+// start the session to link informations to the game page
 session_start();
 
 // save the posted username into a session variable
@@ -27,6 +28,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 	</div>
 
 	<div class="form">
+		<!-- popup menu to register the player with post method -->
 		<form method="POST" action="">
 			<button class="authButton" id="open" onclick="openForm()">Authentification</button>
 			<div class="formPopup" id="form">
@@ -48,6 +50,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 				</form>
 			</div>
 		</form>
+		<!-- redirect to the game depending of the level you selected -->
 		<form>
 			<div class="fieldColumn">
 				<a id="link" href="<?php if (isset($_SESSION['username'])) {
@@ -66,6 +69,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 		</form>
 	</div>
 
+	<!-- footer used for menu and game page -->
 	<footer>
 		<div class="link social">
 			<a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank" alt="Linkedin button">

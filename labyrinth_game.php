@@ -1,4 +1,5 @@
 <?php
+// start the session to link informations from menu page
 session_start();
 
 // constant variables
@@ -308,9 +309,11 @@ function moveDown()
 <body id="page">
 
    <div class="header">
+      <!-- display logout/restart button and the username registered before -->
       <div class="dashboard">
          <div class="dashButton">
             <a class="logoutButton" id="logout" href="./labyrinth_game_menu.php" alt="Logout button">Logout</a>
+            <!-- restart the file loaded during init process -->
             <a class="restartButton" id="restart" href="<?php if (isset($_SESSION['username'])) {
                                                             echo './labyrinth_game.php?init=' . $_SESSION['cfg']['gameFile'];
                                                          } else {
@@ -336,7 +339,41 @@ function moveDown()
    <div class="labyrinthGame">
       <div class="progressionText">
          <?php
+         // display player moves with $_GET
          if (isset($_SESSION['username'])) {
+            // start
+            if (!isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE) {
+               echo 'Find a way out of the maze';
+               // move display (no bonus)
+            } elseif (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and empty($_SESSION['cfg']['bonusTotal'])) {
+               if ($_GET['move'] == 'up') {
+                  $_GET['move'] = '⮝';
+               } elseif ($_GET['move'] == 'left') {
+                  $_GET['move'] = '⮜';
+               } elseif ($_GET['move'] == 'right') {
+                  $_GET['move'] = '⮞';
+               } elseif ($_GET['move'] == 'down') {
+                  $_GET['move'] = '⮟';
+               }
+               echo 'Move: ' . $_GET['move'];
+               // move display with bonus
+            } else if (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and isset($_SESSION['cfg']['bonusTotal'])) {
+               if ($_GET['move'] == 'up') {
+                  $_GET['move'] = '⮝';
+               } elseif ($_GET['move'] == 'left') {
+                  $_GET['move'] = '⮜';
+               } elseif ($_GET['move'] == 'right') {
+                  $_GET['move'] = '⮞';
+               } elseif ($_GET['move'] == 'down') {
+                  $_GET['move'] = '⮟';
+               }
+               echo 'Move: ' . $_GET['move'] . ' - Bonus collected: ' . $_SESSION['cfg']['bonusCount'] . '/' . $_SESSION['cfg']['bonusTotal'];
+               if ($_SESSION['cfg']['bonusError'] == TRUE) {
+                  echo '<br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspBonus missed!';
+                  $_SESSION['cfg']['bonusError'] = FALSE;
+               }
+            }
+            // standard win display (no bonus)
             if ($_SESSION['cfg']['win'] == TRUE and !empty($_SESSION['cfg']['bonusTotal'])) {
                if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
                   echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
@@ -360,6 +397,7 @@ function moveDown()
                      echo '<br>You finally managed to get out';
                   }
                }
+               // win display with bonus
             } elseif ($_SESSION['cfg']['win'] == TRUE and $_SESSION['cfg']['bonusCount'] == $_SESSION['cfg']['bonusTotal']) {
                if ($_SESSION['cfg']['gameFile'] == 'levels/labyrinth_level1.txt') {
                   echo '&nbsp &nbsp &nbsp &nbsp &nbsp Dev: ' . constant('DEV_LEVEL1') . ' - ' . $username . ': ' . $_SESSION['cfg']['moveCount'];
@@ -384,47 +422,21 @@ function moveDown()
                   }
                }
             }
-            if (!isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE) {
-               echo 'Find a way out of the maze';
-            } elseif (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and empty($_SESSION['cfg']['bonusTotal'])) {
-               if ($_GET['move'] == 'up') {
-                  $_GET['move'] = '⮝';
-               } elseif ($_GET['move'] == 'left') {
-                  $_GET['move'] = '⮜';
-               } elseif ($_GET['move'] == 'right') {
-                  $_GET['move'] = '⮞';
-               } elseif ($_GET['move'] == 'down') {
-                  $_GET['move'] = '⮟';
-               }
-               echo 'Move: ' . $_GET['move'];
-            } else if (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and isset($_SESSION['cfg']['bonusTotal'])) {
-               if ($_GET['move'] == 'up') {
-                  $_GET['move'] = '⮝';
-               } elseif ($_GET['move'] == 'left') {
-                  $_GET['move'] = '⮜';
-               } elseif ($_GET['move'] == 'right') {
-                  $_GET['move'] = '⮞';
-               } elseif ($_GET['move'] == 'down') {
-                  $_GET['move'] = '⮟';
-               }
-               echo 'Move: ' . $_GET['move'] . ' - Bonus collected: ' . $_SESSION['cfg']['bonusCount'] . '/' . $_SESSION['cfg']['bonusTotal'];
-               if ($_SESSION['cfg']['bonusError'] == TRUE) {
-                  echo '<br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspBonus missed!';
-                  $_SESSION['cfg']['bonusError'] = FALSE;
-               }
-            }
+            // if username not set back to menu
          } else {
             header('Location: http://localhost/PHP-Labyrinth/labyrinth_game_menu.php');
          }
          ?>
       </div>
       <?php
+      // display the maze
       if (isset($_SESSION['username'])) {
          display();
       }
       ?>
    </div>
 
+   <!-- move buttons with post method -->
    <div class="moveButton">
       <form class="upButton" method="POST" action="./labyrinth_game.php?move=up">
          <input id="up" type="submit" name="up" value="" alt="Up button" />
@@ -442,6 +454,7 @@ function moveDown()
       </form>
    </div>
 
+   <!-- footer used for menu and game page -->
    <footer>
       <div class="link social">
          <a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank" alt="Linkedin button">
