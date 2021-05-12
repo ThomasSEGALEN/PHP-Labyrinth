@@ -82,6 +82,8 @@
 
 ## 6. Renders :  
   
+*Tested with Chrome and Firefox.*  
+  
 | _Renders of the main menu :_ | _Renders of the game :_ |
 |:----------------------------:|:-----------------------:|
 |![Menu render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/MenuRender1.PNG)|![Game render 1](https://github.com/ThomasSEGALEN/PHP-Labyrinth/blob/main/img/GameRender1.PNG)|
