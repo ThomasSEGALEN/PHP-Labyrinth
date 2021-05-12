@@ -14,7 +14,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 <head>
 	<title>Labyrinthe PHP</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="labyrinth_menu_css.css">
+	<link rel="stylesheet" type="text/css" href="labyrinth_game_menu.css">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 </head>
 
@@ -85,7 +85,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 		<span class="copyright">Developed & designed by Thomas SÉGALEN | © 2021</span>
 	</footer>
 
-	<script type="text/javascript" src="labyrinth_js.js"></script>
+	<script type="text/javascript" src="labyrinth.js"></script>
 
 </body>
 
