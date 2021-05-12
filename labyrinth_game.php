@@ -20,6 +20,8 @@ define('DEV_LEVEL3', '128');
 // save the username into a variable
 if (isset($_SESSION['username'])) {
    $username = $_SESSION['username'];
+} else {
+	header('Location: http://localhost/PHP-Labyrinth/labyrinth_game_menu.php');
 }
 
 // initialize the game
@@ -422,9 +424,6 @@ function moveDown()
                   }
                }
             }
-            // if username not set back to menu
-         } else {
-            header('Location: http://localhost/PHP-Labyrinth/labyrinth_game_menu.php');
          }
          ?>
       </div>
