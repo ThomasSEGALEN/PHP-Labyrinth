@@ -8,6 +8,7 @@ body {
   align-items: center;
   flex-flow: column wrap;
   margin: 0;
+  width: 100%;
 }
 
 /* Add styles to the dashboard */
@@ -15,6 +16,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  flex-flow: column wrap;
   background: #f5f7fa;
   background-color: #ab87ff;
   border: 3px solid #f5f7fa;
@@ -23,12 +26,24 @@ body {
   margin: 2px;
 }
 
+.usernameText {
+  margin: 0 auto;
+}
+
 .dashButton {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   padding-bottom: 2px;
   font-weight: bold;
+}
+
+.logoutButton {
+  padding-right: 10px;
+}
+
+.restartButton {
+  padding-left: 10px;
 }
 
 /* Add styles to links */
@@ -72,7 +87,7 @@ a:hover {
   align-items: center;
   flex-flow: row wrap;
   color: #f5f7fa;
-  margin-top: 70px;
+  margin-top: 12px;
 }
 
 .logo img {
@@ -95,7 +110,7 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 15px auto;
+  margin: 10px auto;
   padding: 15px;
   background-color: #ab87ff;
   border: 3px solid #f5f7fa;
@@ -182,8 +197,8 @@ a:hover {
 /* Add styles to the footer */
 footer {
   position: fixed;
-  left: 0;
   bottom: 0;
+  margin-top: 62.3px;
   width: 100%;
   background-color: #ab87ff;
   padding-top: 10px;
@@ -219,4 +234,18 @@ footer {
 .footerEffect:hover > img {
   transform: scale(1.25);
   transition: all 0.5s ease;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    zoom: 80%;
+  }
+
+  .logo {
+    margin-top: 67px;
+  }
+
+  footer {
+    position: relative;
+  }
 }

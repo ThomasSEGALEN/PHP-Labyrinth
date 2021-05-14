@@ -21,7 +21,7 @@ define('DEV_LEVEL3', '128');
 if (isset($_SESSION['username'])) {
    $username = $_SESSION['username'];
 } else {
-	header('Location: http://localhost/PHP-Labyrinth/labyrinth_game_menu.php');
+   header('Location: http://localhost/PHP-Labyrinth/labyrinth_game_menu.php');
 }
 
 // initialize the game
@@ -107,7 +107,7 @@ function display()
       echo '<div>' . PHP_EOL;
       for ($row = 0; $row < $cfg['rowCount']; $row++) {
          for ($col = 0; $col < $cfg['colCount']; $col++) {
-            echo $cfg['grid'][$row][$col] . PHP_EOL;
+            echo '<span class="emoji">' . $cfg['grid'][$row][$col] . PHP_EOL . '</span>';
          }
          echo '<br>' . PHP_EOL;
       }
@@ -322,13 +322,15 @@ function moveDown()
                                                             echo 'username_not_set';
                                                          } ?>" alt="Restart button">Restart</a>
          </div>
-         <?php
-         if (!isset($username)) {
-            echo 'Username is not set!';
-         } else {
-            echo 'Username: ' . $username;
-         }
-         ?>
+         <div class="usernameText">
+            <?php
+            if (!isset($username)) {
+               echo 'Username is not set!';
+            } else {
+               echo 'Username: ' . $username;
+            }
+            ?>
+         </div>
       </div>
       <div class="logo">
          <img src="img/LabyrinthLogo.png">
@@ -454,7 +456,7 @@ function moveDown()
    </div>
 
    <!-- footer used for menu and game page -->
-   <footer>
+   <footer class="footer">
       <div class="link social">
          <a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank" alt="Linkedin button">
             <img src="img/LinkedinLogo.png" />
