@@ -21,7 +21,7 @@ define('DEV_LEVEL3', '128');
 if (isset($_SESSION['username'])) {
    $username = $_SESSION['username'];
 } else {
-   header('Location: http://localhost/PHP-Labyrinth/labyrinth_game_menu.php');
+   header('Location: ./labyrinth_game_menu.php');
 }
 
 // initialize the game
