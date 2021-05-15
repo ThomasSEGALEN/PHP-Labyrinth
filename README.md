@@ -1,6 +1,6 @@
 # PHP-Labyrinth  
   
-https://shirotoriko.w3.websr.fr/PHP-Labyrinth/labyrinth_game_menu.php  
+https://shirotoriko.w3.websr.fr/PHP-Labyrinth/
   
 ## Table of contents :  
   
