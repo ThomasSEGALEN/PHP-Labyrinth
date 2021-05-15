@@ -1,5 +1,7 @@
 # PHP-Labyrinth  
   
+https://shirotoriko.w3.websr.fr/PHP-Labyrinth/labyrinth_game_menu.php  
+  
 ## Table of contents :  
   
 1. [Wording](README.md#1-wording-)  
