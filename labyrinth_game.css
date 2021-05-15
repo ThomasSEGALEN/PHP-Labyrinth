@@ -127,6 +127,7 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 50px;
 }
 
 .upButton input {
@@ -243,6 +244,10 @@ footer {
 
   .logo {
     margin-top: 67px;
+  }
+
+  .moveButton {
+    padding-top: 0px;
   }
 
   footer {
