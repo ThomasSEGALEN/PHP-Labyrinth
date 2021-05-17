@@ -314,13 +314,13 @@ function moveDown()
       <!-- display logout/restart button and the username registered before -->
       <div class="dashboard">
          <div class="dashButton">
-            <a class="logoutButton" id="logout" href="./labyrinth_game_menu.php" alt="Logout button">Logout</a>
+            <a class="logoutButton" id="logout" href="./labyrinth_game_menu.php">Logout</a>
             <!-- restart the file loaded during init process -->
             <a class="restartButton" id="restart" href="<?php if (isset($_SESSION['username'])) {
                                                             echo './labyrinth_game.php?init=' . $_SESSION['cfg']['gameFile'];
                                                          } else {
                                                             echo 'username_not_set';
-                                                         } ?>" alt="Restart button">Restart</a>
+                                                         } ?>">Restart</a>
          </div>
          <div class="usernameText">
             <?php
@@ -333,7 +333,7 @@ function moveDown()
          </div>
       </div>
       <div class="logo">
-         <img src="img/LabyrinthLogo.png">
+         <img src="img/LabyrinthLogo.png" alt="Logo" />
          <a href="./labyrinth_game_menu.php">
             <h1 class="title">PHP Labyrinth Game</h1>
          </a>
@@ -440,32 +440,32 @@ function moveDown()
    <!-- move buttons with post method -->
    <div class="moveButton">
       <form class="upButton" method="POST" action="./labyrinth_game.php?move=up">
-         <input id="up" type="submit" name="up" value="" alt="Up button" />
+         <input id="up" type="submit" name="up" value="" />
       </form>
       <div class="lrButton">
          <form class="leftButton" method="POST" action="./labyrinth_game.php?move=left">
-            <input id="left" type="submit" name="left" value="" alt="Left button" />
+            <input id="left" type="submit" name="left" value="" />
          </form>
          <form class="rightButton" method="POST" action="./labyrinth_game.php?move=right">
-            <input id="right" type="submit" name="right" value="" alt="Right button" />
+            <input id="right" type="submit" name="right" value="" />
          </form>
       </div>
       <form class="downButton" method="POST" action="./labyrinth_game.php?move=down">
-         <input id="down" type="submit" name="down" value="" alt="Down button" />
+         <input id="down" type="submit" name="down" value="" />
       </form>
    </div>
 
    <!-- footer used for menu and game page -->
    <footer class="footer">
       <div class="link social">
-         <a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank" alt="Linkedin button">
-            <img src="img/LinkedinLogo.png" />
+         <a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank">
+            <img src="img/LinkedinLogo.png" alt="Linkedin" />
          </a>
-         <a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank" alt="Github button">
-            <img src="img/GithubLogo.png" />
+         <a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank">
+            <img src="img/GithubLogo.png" alt="Github" />
          </a>
-         <a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank" alt="Mail button">
-            <img src="img/MailLogo.png" />
+         <a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank">
+            <img src="img/MailLogo.png" alt="Mail" />
          </a>
       </div>
       <span class="copyright">Developed & designed by Thomas SÉGALEN | © 2021</span>

@@ -21,7 +21,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 <body>
 
 	<div class="logo">
-		<img src="img/LabyrinthLogo.png">
+		<img src="img/LabyrinthLogo.png" alt="Logo" />
 		<a href="./labyrinth_game_menu.php">
 			<h1 class="title">PHP Labyrinth Game</h1>
 		</a>
@@ -29,25 +29,23 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 
 	<div class="form">
 		<!-- popup menu to register the player with post method -->
-		<form method="POST" action="">
+		<form method="POST">
 			<button class="authButton" id="open" onclick="openForm()">Authentification</button>
 			<div class="formPopup" id="form">
-				<form class="formContainer">
-					<div class="fieldColumn">
-						<div class="usernameLabel">
-							<label for="username">Username</label>
-						</div>
-						<div>
-							<input class="inputBox" type="text" name="username" required>
-						</div>
+				<div class="fieldColumn">
+					<div class="usernameLabel">
+						<label>Username</label>
 					</div>
-					<div class="fieldColumn">
-						<div>
-							<input class="loginButton" type="submit" name="login" value="Confirm" alt="Login button">
-						</div>
+					<div>
+						<input class="inputBox" type="text" name="username" required>
 					</div>
-					<!-- <button class="closeButton" onclick="closeForm()">Close</button> -->
-				</form>
+				</div>
+				<div class="fieldColumn">
+					<div>
+						<input class="loginButton" type="submit" name="login" value="Confirm">
+					</div>
+				</div>
+				<!-- <button class="closeButton" onclick="closeForm()">Close</button> -->
 			</div>
 		</form>
 		<!-- redirect to the game depending of the level you selected -->
@@ -55,7 +53,7 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 			<div class="fieldColumn">
 				<a id="link" href="<?php if (isset($_SESSION['username'])) {
 									} ?>" onclick="getLevel()">
-					<input class="playButton" type="button" name="play" value="Play" alt="Play button">
+					<input class="playButton" type="button" name="play" value="Play">
 				</a>
 				<div class="levelButton">
 					<input type="radio" id="level1" name="level" value="Level1" checked>
@@ -72,14 +70,14 @@ if (isset($_POST['username']) and (!empty($_POST['username']))) {
 	<!-- footer used for menu and game page -->
 	<footer>
 		<div class="link social">
-			<a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank" alt="Linkedin button">
-				<img src="img/LinkedinLogo.png">
+			<a class="footerEffect" href="https://www.linkedin.com/in/thomas-s%C3%A9galen" target="_blank">
+				<img src="img/LinkedinLogo.png" alt="Linkedin" />
 			</a>
-			<a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank" alt="Github button">
-				<img src="img/GithubLogo.png">
+			<a class="footerEffect" href="https://github.com/ThomasSEGALEN" target="_blank">
+				<img src="img/GithubLogo.png" alt="Github" />
 			</a>
-			<a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank" alt="Mail button">
-				<img src="img/MailLogo.png">
+			<a class="footerEffect" href="mailto:segalen.thomas.pro@gmail.com" target="_blank">
+				<img src="img/MailLogo.png" alt="Mail" />
 			</a>
 		</div>
 		<span class="copyright">Developed & designed by Thomas SÉGALEN | © 2021</span>
