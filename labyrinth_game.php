@@ -107,7 +107,7 @@ function display()
       echo '<div>' . PHP_EOL;
       for ($row = 0; $row < $cfg['rowCount']; $row++) {
          for ($col = 0; $col < $cfg['colCount']; $col++) {
-            echo '<span class="emoji">' . $cfg['grid'][$row][$col] . PHP_EOL . '</span>';
+            echo '<span class="emoji">' . $cfg['grid'][$row][$col] . '</span>' . PHP_EOL;
          }
          echo '<br>' . PHP_EOL;
       }
