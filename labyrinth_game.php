@@ -113,7 +113,7 @@ function display()
       }
       echo '</div>' . PHP_EOL;
    } else {
-      echo '<span> Labyrinth is not loaded ! </span>' . PHP_EOL;
+      echo '<span>Labyrinth is not loaded !</span>' . PHP_EOL;
    }
 }
 
@@ -351,25 +351,25 @@ function moveDown()
                // move display (no bonus)
             } elseif (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and empty($_SESSION['cfg']['bonusTotal'])) {
                if ($_GET['move'] == 'up') {
-                  $_GET['move'] = '⮝';
+                  $_GET['move'] = htmlspecialchars('⮝');
                } elseif ($_GET['move'] == 'left') {
-                  $_GET['move'] = '⮜';
+                  $_GET['move'] = htmlspecialchars('⮜');
                } elseif ($_GET['move'] == 'right') {
-                  $_GET['move'] = '⮞';
+                  $_GET['move'] = htmlspecialchars('⮞');
                } elseif ($_GET['move'] == 'down') {
-                  $_GET['move'] = '⮟';
+                  $_GET['move'] = htmlspecialchars('⮟');
                }
                echo 'Move: ' . $_GET['move'];
                // move display with bonus
             } else if (isset($_GET['move']) and $_SESSION['cfg']['win'] == FALSE and isset($_SESSION['cfg']['bonusTotal'])) {
                if ($_GET['move'] == 'up') {
-                  $_GET['move'] = '⮝';
+                  $_GET['move'] = htmlspecialchars('⮝');
                } elseif ($_GET['move'] == 'left') {
-                  $_GET['move'] = '⮜';
+                  $_GET['move'] = htmlspecialchars('⮜');
                } elseif ($_GET['move'] == 'right') {
-                  $_GET['move'] = '⮞';
+                  $_GET['move'] = htmlspecialchars('⮞');
                } elseif ($_GET['move'] == 'down') {
-                  $_GET['move'] = '⮟';
+                  $_GET['move'] = htmlspecialchars('⮟');
                }
                echo 'Move: ' . $_GET['move'] . ' - Bonus collected: ' . $_SESSION['cfg']['bonusCount'] . '/' . $_SESSION['cfg']['bonusTotal'];
                if ($_SESSION['cfg']['bonusError'] == TRUE) {

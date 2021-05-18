@@ -238,6 +238,10 @@ footer {
     zoom: 80%;
   }
 
+  .title {
+    position: static;
+  }
+
   .logo {
     margin-top: 67px;
   }
