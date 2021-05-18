@@ -117,10 +117,6 @@ a:hover {
   border-radius: 10px;
 }
 
-.labyrinthGame div {
-  color: #4e4187;
-}
-
 /* Add styles to move buttons */
 .moveButton {
   display: flex;

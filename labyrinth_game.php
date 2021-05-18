@@ -113,7 +113,7 @@ function display()
       }
       echo '</div>' . PHP_EOL;
    } else {
-      echo '<div>' . 'Labyrinth is not loaded !' . '</div>' . PHP_EOL;
+      echo '<span> Labyrinth is not loaded ! </span>' . PHP_EOL;
    }
 }
 
